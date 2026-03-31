@@ -10,7 +10,6 @@
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=EB+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
     html { scroll-behavior: smooth; }
 
     body {
@@ -60,7 +59,7 @@
 
     .nav-links a:hover { color: #e8d9b0; }
 
-    /* ── Hero ── */
+    /* ── Hero Slideshow ── */
     .hero {
       position: relative;
       width: 100%;
@@ -69,15 +68,25 @@
       align-items: center;
       justify-content: center;
       overflow: hidden;
+      background: #12100d;
     }
 
-    .hero-img {
+    .hero-slide {
       position: absolute;
       inset: 0;
       width: 100%;
       height: 100%;
+      opacity: 0;
+      transition: opacity 1.8s ease-in-out;
+    }
+
+    .hero-slide.active { opacity: 1; }
+
+    .hero-slide img {
+      width: 100%;
+      height: 100%;
       object-fit: cover;
-      object-position: center top;
+      object-position: center;
       opacity: 0.42;
     }
 
@@ -86,10 +95,11 @@
       inset: 0;
       background: linear-gradient(
         to bottom,
-        rgba(18, 14, 10, 0.25) 0%,
-        rgba(18, 14, 10, 0.65) 80%,
+        rgba(18, 14, 10, 0.2) 0%,
+        rgba(18, 14, 10, 0.6) 75%,
         #1a1612 100%
       );
+      z-index: 1;
     }
 
     .hero-content {
@@ -160,6 +170,30 @@
       padding: 9px 24px;
     }
 
+    /* Slideshow dots */
+    .slide-dots {
+      position: absolute;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 3;
+      display: flex;
+      gap: 10px;
+    }
+
+    .dot {
+      width: 6px;
+      height: 6px;
+      background: rgba(160, 120, 64, 0.35);
+      transform: rotate(45deg);
+      cursor: pointer;
+      transition: background 0.3s ease;
+      border: none;
+      padding: 0;
+    }
+
+    .dot.active { background: rgba(160, 120, 64, 0.9); }
+
     /* ── About Section ── */
     .section {
       padding: 5rem 2rem;
@@ -193,14 +227,14 @@
     /* ── Collections Strip ── */
     .collections {
       padding: 3rem 2rem 5rem;
-      max-width: 860px;
+      max-width: 900px;
       margin: 0 auto;
       text-align: center;
     }
 
     .collections-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
       gap: 1px;
       background: #3a2e1e;
       border: 1px solid #3a2e1e;
@@ -310,8 +344,25 @@
   </nav>
 
   <section class="hero">
-    <img class="hero-img" src="hero-jewelry.png" alt="Handcrafted steampunk clock pendants and jewelry" />
+
+    <div class="hero-slide active">
+      <img src="hero1.png" alt="Steampunk clock pendants with roses and filigree" />
+    </div>
+    <div class="hero-slide">
+      <img src="hero2.jpg" alt="Dragon claw pendants holding d20 dice" />
+    </div>
+    <div class="hero-slide">
+      <img src="hero3.jpg" alt="Celtic knotwork pendants — stag, hound, and dragon" />
+    </div>
+    <div class="hero-slide">
+      <img src="hero4.jpg" alt="Tarot card charm bracelet with potion bottle and d12" />
+    </div>
+    <div class="hero-slide">
+      <img src="hero5.jpg" alt="Dragon pendants in silver, purple, green, and bronze" />
+    </div>
+
     <div class="hero-overlay"></div>
+
     <div class="hero-content">
       <div class="hero-rule"></div>
       <h1>Lore Faire</h1>
@@ -323,6 +374,15 @@
       </div>
       <span class="badge">Full gallery coming soon</span>
     </div>
+
+    <div class="slide-dots">
+      <button class="dot active" onclick="goToSlide(0)"></button>
+      <button class="dot" onclick="goToSlide(1)"></button>
+      <button class="dot" onclick="goToSlide(2)"></button>
+      <button class="dot" onclick="goToSlide(3)"></button>
+      <button class="dot" onclick="goToSlide(4)"></button>
+    </div>
+
   </section>
 
   <section class="section" id="about">
@@ -333,8 +393,8 @@
       <em>D&amp;D campaigns, woodland wanderings,</em> and a deep love of the handmade.
     </p>
     <p>
-      Each piece carries its own story. Steampunk clock pendants. Dragon-touched wood jewelry.
-      Earthy ren faire adornments. <em>Painted worlds. Miniature terrariums.</em>
+      Each piece carries its own story. Dragon claw pendants. Tarot charm bracelets. Celtic knotwork.
+      <em>Steampunk timepieces. Painted worlds. Miniature terrariums.</em>
       No two quite the same — because that was never the point.
     </p>
     <div class="divider" style="margin-top: 2.5rem;">
@@ -350,6 +410,11 @@
       <div class="collection-item">
         <span class="collection-icon">⚔️</span>
         <span class="collection-name">D&amp;D &amp; Fantasy</span>
+        <span class="collection-note">coming soon</span>
+      </div>
+      <div class="collection-item">
+        <span class="collection-icon">🐉</span>
+        <span class="collection-name">Dragons</span>
         <span class="collection-note">coming soon</span>
       </div>
       <div class="collection-item">
@@ -372,11 +437,6 @@
         <span class="collection-name">Terrariums</span>
         <span class="collection-note">coming soon</span>
       </div>
-      <div class="collection-item">
-        <span class="collection-icon">✨</span>
-        <span class="collection-name">Curiosities</span>
-        <span class="collection-note">coming soon</span>
-      </div>
     </div>
   </section>
 
@@ -393,6 +453,29 @@
     <p>&copy; 2025 Lore Faire &nbsp;&mdash;&nbsp; Acworth, Georgia &nbsp;&mdash;&nbsp;
     <a href="#">Legal Notice</a> &nbsp;|&nbsp; <a href="#">Privacy Policy</a></p>
   </footer>
+
+  <script>
+    const slides = document.querySelectorAll('.hero-slide');
+    const dots = document.querySelectorAll('.dot');
+    let current = 0;
+    let timer;
+
+    function goToSlide(n) {
+      slides[current].classList.remove('active');
+      dots[current].classList.remove('active');
+      current = n;
+      slides[current].classList.add('active');
+      dots[current].classList.add('active');
+      clearInterval(timer);
+      timer = setInterval(nextSlide, 5000);
+    }
+
+    function nextSlide() {
+      goToSlide((current + 1) % slides.length);
+    }
+
+    timer = setInterval(nextSlide, 5000);
+  </script>
 
 </body>
 </html>
