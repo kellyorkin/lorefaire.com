@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lore Faire — Handcrafted Curiosities for the Wandering Soul</title>
+  <meta name="description" content="A maker's collection of handcrafted jewelry, wearable art, and curiosities born from D&D campaigns, woodland wanderings, and a deep love of the handmade." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=EB+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'EB Garamond', Georgia, serif;
+      background-color: #1a1612;
+      color: #d4c9a8;
+      min-height: 100vh;
+    }
+
+    /* ── Navigation ── */
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.25rem 3rem;
+      background: #12100d;
+      border-bottom: 1px solid #3a2e1e;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .nav-logo {
+      font-family: 'Cinzel', serif;
+      font-size: 18px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      color: #e8d9b0;
+      text-decoration: none;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2.5rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-family: 'Cinzel', serif;
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #9a8660;
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+
+    .nav-links a:hover { color: #e8d9b0; }
+
+    /* ── Hero ── */
+    .hero {
+      position: relative;
+      width: 100%;
+      min-height: 90vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .hero-img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      opacity: 0.42;
+    }
+
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to bottom,
+        rgba(18, 14, 10, 0.25) 0%,
+        rgba(18, 14, 10, 0.65) 80%,
+        #1a1612 100%
+      );
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      padding: 4rem 2rem;
+      max-width: 680px;
+    }
+
+    .hero-rule {
+      width: 60px;
+      height: 1px;
+      background: #a07840;
+      margin: 0 auto 2rem;
+    }
+
+    h1 {
+      font-family: 'Cinzel', serif;
+      font-size: clamp(42px, 8vw, 72px);
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      color: #e8d9b0;
+      line-height: 1.05;
+      margin-bottom: 0.5rem;
+    }
+
+    .hero-subtitle {
+      font-family: 'EB Garamond', Georgia, serif;
+      font-size: clamp(16px, 2.5vw, 22px);
+      font-style: italic;
+      color: #b8a47a;
+      letter-spacing: 0.05em;
+      margin-bottom: 2.5rem;
+    }
+
+    .divider {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      justify-content: center;
+      margin: 0 auto 2.5rem;
+    }
+
+    .divider-line {
+      width: 48px;
+      height: 1px;
+      background: #a07840;
+      opacity: 0.55;
+    }
+
+    .divider-gem {
+      width: 7px;
+      height: 7px;
+      background: #a07840;
+      transform: rotate(45deg);
+      opacity: 0.85;
+    }
+
+    .badge {
+      display: inline-block;
+      font-family: 'Cinzel', serif;
+      font-size: 10px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: #a07840;
+      border: 1px solid rgba(160, 120, 64, 0.6);
+      padding: 9px 24px;
+    }
+
+    /* ── About Section ── */
+    .section {
+      padding: 5rem 2rem;
+      max-width: 720px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .section-label {
+      font-family: 'Cinzel', serif;
+      font-size: 10px;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: #a07840;
+      margin-bottom: 1.5rem;
+      display: block;
+    }
+
+    .section p {
+      font-size: clamp(17px, 2vw, 20px);
+      line-height: 1.85;
+      color: #c4b48e;
+      margin-bottom: 1.5rem;
+    }
+
+    .section p em {
+      color: #ddd0aa;
+      font-style: italic;
+    }
+
+    /* ── Collections Strip ── */
+    .collections {
+      padding: 3rem 2rem 5rem;
+      max-width: 860px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .collections-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 1px;
+      background: #3a2e1e;
+      border: 1px solid #3a2e1e;
+      margin-top: 2rem;
+    }
+
+    .collection-item {
+      background: #1a1612;
+      padding: 2rem 1rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.75rem;
+      transition: background 0.2s ease;
+    }
+
+    .collection-item:hover { background: #211c15; }
+
+    .collection-icon {
+      font-size: 22px;
+      line-height: 1;
+    }
+
+    .collection-name {
+      font-family: 'Cinzel', serif;
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #9a8660;
+    }
+
+    .collection-note {
+      font-family: 'EB Garamond', serif;
+      font-style: italic;
+      font-size: 13px;
+      color: #5a5040;
+    }
+
+    /* ── Contact ── */
+    .contact {
+      padding: 4rem 2rem;
+      border-top: 1px solid #2a2018;
+      text-align: center;
+      max-width: 580px;
+      margin: 0 auto;
+    }
+
+    .contact p {
+      font-size: 17px;
+      line-height: 1.8;
+      color: #8a7e64;
+      margin-bottom: 1.5rem;
+    }
+
+    .contact a {
+      font-family: 'Cinzel', serif;
+      font-size: 13px;
+      letter-spacing: 0.12em;
+      color: #a07840;
+      text-decoration: none;
+      border-bottom: 1px solid rgba(160, 120, 64, 0.35);
+      padding-bottom: 2px;
+      transition: color 0.2s ease, border-color 0.2s ease;
+    }
+
+    .contact a:hover {
+      color: #c8a060;
+      border-color: rgba(200, 160, 96, 0.6);
+    }
+
+    /* ── Footer ── */
+    footer {
+      padding: 2rem;
+      border-top: 1px solid #2a2018;
+      text-align: center;
+      font-family: 'Cinzel', serif;
+      font-size: 10px;
+      letter-spacing: 0.15em;
+      color: #4a4030;
+    }
+
+    footer a {
+      color: #5a5040;
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+
+    footer a:hover { color: #9a8660; }
+
+    /* ── Responsive ── */
+    @media (max-width: 600px) {
+      nav { padding: 1rem 1.5rem; }
+      .nav-links { gap: 1.5rem; }
+      .collections-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="#" class="nav-logo">Lore Faire</a>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#collections">Collections</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <section class="hero">
+    <img class="hero-img" src="hero-jewelry.png" alt="Handcrafted steampunk clock pendants and jewelry" />
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <div class="hero-rule"></div>
+      <h1>Lore Faire</h1>
+      <p class="hero-subtitle">Handcrafted curiosities for the wandering soul</p>
+      <div class="divider">
+        <div class="divider-line"></div>
+        <div class="divider-gem"></div>
+        <div class="divider-line"></div>
+      </div>
+      <span class="badge">Full gallery coming soon</span>
+    </div>
+  </section>
+
+  <section class="section" id="about">
+    <span class="section-label">The maker</span>
+    <p>
+      Somewhere between a <em>renaissance faire</em> and a candlelit library, you'll find the spirit of Lore Faire —
+      a maker's collection of handcrafted jewelry, wearable art, and curiosities born from
+      <em>D&amp;D campaigns, woodland wanderings,</em> and a deep love of the handmade.
+    </p>
+    <p>
+      Each piece carries its own story. Steampunk clock pendants. Dragon-touched wood jewelry.
+      Earthy ren faire adornments. <em>Painted worlds. Miniature terrariums.</em>
+      No two quite the same — because that was never the point.
+    </p>
+    <div class="divider" style="margin-top: 2.5rem;">
+      <div class="divider-line"></div>
+      <div class="divider-gem"></div>
+      <div class="divider-line"></div>
+    </div>
+  </section>
+
+  <section class="collections" id="collections">
+    <span class="section-label">Collections in progress</span>
+    <div class="collections-grid">
+      <div class="collection-item">
+        <span class="collection-icon">⚔️</span>
+        <span class="collection-name">D&amp;D &amp; Fantasy</span>
+        <span class="collection-note">coming soon</span>
+      </div>
+      <div class="collection-item">
+        <span class="collection-icon">⚙️</span>
+        <span class="collection-name">Steampunk</span>
+        <span class="collection-note">coming soon</span>
+      </div>
+      <div class="collection-item">
+        <span class="collection-icon">🌿</span>
+        <span class="collection-name">Ren Faire</span>
+        <span class="collection-note">coming soon</span>
+      </div>
+      <div class="collection-item">
+        <span class="collection-icon">🎨</span>
+        <span class="collection-name">Fine Art</span>
+        <span class="collection-note">coming soon</span>
+      </div>
+      <div class="collection-item">
+        <span class="collection-icon">🌱</span>
+        <span class="collection-name">Terrariums</span>
+        <span class="collection-note">coming soon</span>
+      </div>
+      <div class="collection-item">
+        <span class="collection-icon">✨</span>
+        <span class="collection-name">Curiosities</span>
+        <span class="collection-note">coming soon</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="contact" id="contact">
+    <span class="section-label">Find something that calls to you?</span>
+    <p>
+      The full gallery is being assembled — but there are boxes of wonders already waiting.
+      Reach out and let's find what belongs with you.
+    </p>
+    <a href="mailto:thedoctor@watscroft.com">thedoctor@watscroft.com</a>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 Lore Faire &nbsp;&mdash;&nbsp; Acworth, Georgia &nbsp;&mdash;&nbsp;
+    <a href="#">Legal Notice</a> &nbsp;|&nbsp; <a href="#">Privacy Policy</a></p>
+  </footer>
+
+</body>
+</html>
