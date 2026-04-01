@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Scribe — Lore Faire</title>
+  <meta name="description" content="The Adventure of the Colonial Victory — a Doyle mystery wrapped in a Wodehouse comedy, and the origin story of Jeeves." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=EB+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'EB Garamond', Georgia, serif;
+      background-color: #1a1612;
+      color: #d4c9a8;
+      min-height: 100vh;
+    }
+
+    /* ── Navigation ── */
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.25rem 3rem;
+      background: #12100d;
+      border-bottom: 1px solid #3a2e1e;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .nav-logo {
+      font-family: 'Cinzel', serif;
+      font-size: 18px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      color: #e8d9b0;
+      text-decoration: none;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2.5rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-family: 'Cinzel', serif;
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #9a8660;
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+
+    .nav-links a:hover { color: #e8d9b0; }
+
+    /* ── Page Header ── */
+    .page-header {
+      padding: 5rem 2rem 3rem;
+      text-align: center;
+      max-width: 720px;
+      margin: 0 auto;
+    }
+
+    .breadcrumb {
+      font-family: 'Cinzel', serif;
+      font-size: 10px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: #5a5040;
+      margin-bottom: 2rem;
+    }
+
+    .breadcrumb a {
+      color: #5a5040;
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+
+    .breadcrumb a:hover { color: #9a8660; }
+    .breadcrumb span { margin: 0 0.75rem; }
+
+    .section-label {
+      font-family: 'Cinzel', serif;
+      font-size: 10px;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: #a07840;
+      margin-bottom: 1.5rem;
+      display: block;
+    }
+
+    h1 {
+      font-family: 'Cinzel', serif;
+      font-size: clamp(24px, 4vw, 42px);
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      color: #e8d9b0;
+      line-height: 1.2;
+      margin-bottom: 1rem;
+    }
+
+    .divider {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      justify-content: center;
+      margin: 0 auto 2.5rem;
+    }
+
+    .divider-line {
+      width: 48px;
+      height: 1px;
+      background: #a07840;
+      opacity: 0.55;
+    }
+
+    .divider-gem {
+      width: 7px;
+      height: 7px;
+      background: #a07840;
+      transform: rotate(45deg);
+      opacity: 0.85;
+    }
+
+    /* ── Book Section ── */
+    .book-section {
+      padding: 1rem 2rem 5rem;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .book-inner {
+      display: grid;
+      grid-template-columns: 240px 1fr;
+      gap: 4rem;
+      align-items: start;
+    }
+
+    .book-cover {
+      width: 100%;
+      border: 1px solid #3a2e1e;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.5);
+    }
+
+    .book-text { text-align: left; }
+
+    .book-subtitle {
+      font-family: 'EB Garamond', serif;
+      font-style: italic;
+      font-size: clamp(15px, 1.8vw, 18px);
+      color: #9a8660;
+      letter-spacing: 0.04em;
+      margin-bottom: 2rem;
+      line-height: 1.6;
+    }
+
+    /* ── Pull Quote ── */
+    .pull-quote {
+      border-left: 2px solid #a07840;
+      padding: 0.5rem 0 0.5rem 1.5rem;
+      margin: 0 0 2rem 0;
+    }
+
+    .pull-quote p {
+      font-family: 'EB Garamond', serif;
+      font-style: italic;
+      font-size: clamp(18px, 2.2vw, 22px);
+      line-height: 1.7;
+      color: #ddd0aa;
+    }
+
+    /* ── Synopsis ── */
+    .synopsis p {
+      font-size: clamp(16px, 1.8vw, 19px);
+      line-height: 1.9;
+      color: #c4b48e;
+      margin-bottom: 1.5rem;
+    }
+
+    .synopsis p em {
+      color: #ddd0aa;
+      font-style: italic;
+    }
+
+    /* ── Closing line ── */
+    .closing-line {
+      font-family: 'EB Garamond', serif;
+      font-style: italic;
+      font-size: clamp(16px, 1.8vw, 19px);
+      color: #9a8660;
+      margin-bottom: 2.5rem;
+      line-height: 1.7;
+    }
+
+    /* ── CTA ── */
+    .book-link {
+      display: inline-block;
+      font-family: 'Cinzel', serif;
+      font-size: 10px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: #a07840;
+      border: 1px solid rgba(160, 120, 64, 0.6);
+      padding: 12px 32px;
+      text-decoration: none;
+      transition: background 0.2s ease, color 0.2s ease;
+    }
+
+    .book-link:hover {
+      background: rgba(160, 120, 64, 0.1);
+      color: #c8a060;
+    }
+
+    /* ── Three words ── */
+    .three-words {
+      padding: 4rem 2rem;
+      border-top: 1px solid #2a2018;
+      text-align: center;
+      max-width: 580px;
+      margin: 0 auto;
+    }
+
+    .three-words p {
+      font-family: 'EB Garamond', serif;
+      font-style: italic;
+      font-size: clamp(17px, 2vw, 20px);
+      color: #8a7e64;
+      line-height: 1.8;
+      margin-bottom: 1rem;
+    }
+
+    .three-words .reveal {
+      font-family: 'Cinzel', serif;
+      font-size: clamp(16px, 2.5vw, 22px);
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      color: #e8d9b0;
+    }
+
+    /* ── Back strip ── */
+    .back-strip {
+      padding: 3rem 2rem;
+      border-top: 1px solid #2a2018;
+      text-align: center;
+    }
+
+    .back-link {
+      display: inline-block;
+      font-family: 'Cinzel', serif;
+      font-size: 10px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: #a07840;
+      border: 1px solid rgba(160, 120, 64, 0.6);
+      padding: 10px 28px;
+      text-decoration: none;
+      transition: background 0.2s ease, color 0.2s ease;
+    }
+
+    .back-link:hover {
+      background: rgba(160, 120, 64, 0.1);
+      color: #c8a060;
+    }
+
+    /* ── Footer ── */
+    footer {
+      padding: 2rem;
+      border-top: 1px solid #2a2018;
+      text-align: center;
+      font-family: 'Cinzel', serif;
+      font-size: 10px;
+      letter-spacing: 0.15em;
+      color: #4a4030;
+    }
+
+    footer a { color: #5a5040; text-decoration: none; transition: color 0.2s ease; }
+    footer a:hover { color: #9a8660; }
+
+    /* ── Responsive ── */
+    @media (max-width: 760px) {
+      .book-inner {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+      .book-cover { max-width: 220px; margin: 0 auto; display: block; }
+      .book-text { text-align: center; }
+      .pull-quote { border-left: none; border-top: 1px solid #a07840; padding: 1.5rem 0 0; text-align: left; }
+    }
+
+    @media (max-width: 600px) {
+      nav { padding: 1rem 1.5rem; }
+      .nav-links { gap: 1rem; }
+      .nav-links a { font-size: 9px; letter-spacing: 0.12em; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="/" class="nav-logo">Lore Faire</a>
+    <ul class="nav-links">
+      <li><a href="/#about">About</a></li>
+      <li><a href="/#collections">Collections</a></li>
+      <li><a href="/#book">Scribe</a></li>
+      <li><a href="/#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <div class="page-header">
+    <p class="breadcrumb">
+      <a href="/">Lore Faire</a>
+      <span>—</span>
+      Collections
+      <span>—</span>
+      The Scribe
+    </p>
+    <span class="section-label">From the scribe's desk</span>
+    <h1>The Adventure of the<br>Colonial Victory</h1>
+    <div class="divider">
+      <div class="divider-line"></div>
+      <div class="divider-gem"></div>
+      <div class="divider-line"></div>
+    </div>
+  </div>
+
+  <section class="book-section">
+    <div class="book-inner">
+
+      <img class="book-cover" src="book-cover.png" alt="The Adventure of the Colonial Victory book cover" />
+
+      <div class="book-text">
+
+        <p class="book-subtitle">
+          A Doyle mystery wrapped in a Wodehouse comedy —<br>
+          and the origin story of the most unflappable manservant in English literature.
+        </p>
+
+        <div class="pull-quote">
+          <p>When a coded telegram arrives at the Foreign Office — apparently requesting that raisin biscuits be dispatched to a Brigadier in Suffolk — it is filed under miscellany and promptly forgotten. It takes Sherlock Holmes approximately four minutes to recognise it as the most significant communication to cross his desk in a year.</p>
+        </div>
+
+        <div class="synopsis">
+          <p>So begins an improbable week in the Suffolk countryside, where Holmes and Dr. Watson find themselves guests at Wooster Hall — a household presided over by a Brigadier whose primary intelligence concern is a large black dog, twins conducting field research of uncertain scientific value, a gardener whose twenty-year grievance about a disputed boundary has been cultivated with the same dedication he brings to his roses, and <em>a twelve-year-old boy named Bertie who faces everything, including a colonial conspiracy, with the serene goodwill of someone who has genuinely never considered that things might not work out.</em></p>
+          <p>There is also a young manservant named Reggie, who says very little, notices everything, and appears to have the situation entirely in hand.</p>
+        </div>
+
+        <p class="closing-line">
+          The Adventure of the Colonial Victory is the story of a week that changed nothing —
+          except, very quietly, everything.
+        </p>
+
+        <a class="book-link" href="https://www.amazon.com/Adventure-Colonial-Victory-Delightful-Wodehouse/dp/B0GRWYL8LR/" target="_blank" rel="noopener">
+          Read on Amazon ↗
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+  <div class="back-strip">
+    <a href="/#collections" class="back-link">← Return to Collections</a>
+  </div>
+
+  <footer>
+    <p>&copy; 2025 Lore Faire &nbsp;&mdash;&nbsp; Acworth, Georgia &nbsp;&mdash;&nbsp;
+    <a href="#">Legal Notice</a> &nbsp;|&nbsp; <a href="#">Privacy Policy</a></p>
+  </footer>
+
+</body>
+</html>
