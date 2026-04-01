@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fine Art — Lore Faire</title>
+  <meta name="description" content="Original paintings, mixed media canvases, silhouette work, and framed assemblages. Each piece a world of its own." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=EB+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'EB Garamond', Georgia, serif;
+      background-color: #1a1612;
+      color: #d4c9a8;
+      min-height: 100vh;
+    }
+
+    /* ── Navigation ── */
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.25rem 3rem;
+      background: #12100d;
+      border-bottom: 1px solid #3a2e1e;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .nav-logo {
+      font-family: 'Cinzel', serif;
+      font-size: 18px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      color: #e8d9b0;
+      text-decoration: none;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2.5rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-family: 'Cinzel', serif;
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #9a8660;
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+
+    .nav-links a:hover { color: #e8d9b0; }
+
+    /* ── Page Header ── */
+    .page-header {
+      padding: 5rem 2rem 3rem;
+      text-align: center;
+      max-width: 720px;
+      margin: 0 auto;
+    }
+
+    .breadcrumb {
+      font-family: 'Cinzel', serif;
+      font-size: 10px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: #5a5040;
+      margin-bottom: 2rem;
+    }
+
+    .breadcrumb a {
+      color: #5a5040;
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+
+    .breadcrumb a:hover { color: #9a8660; }
+
+    .breadcrumb span { margin: 0 0.75rem; }
+
+    .section-label {
+      font-family: 'Cinzel', serif;
+      font-size: 10px;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: #a07840;
+      margin-bottom: 1.5rem;
+      display: block;
+    }
+
+    h1 {
+      font-family: 'Cinzel', serif;
+      font-size: clamp(32px, 6vw, 56px);
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      color: #e8d9b0;
+      line-height: 1.1;
+      margin-bottom: 1.25rem;
+    }
+
+    .page-intro {
+      font-size: clamp(17px, 2vw, 20px);
+      line-height: 1.85;
+      color: #c4b48e;
+      font-style: italic;
+      margin-bottom: 2rem;
+    }
+
+    .divider {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      justify-content: center;
+      margin: 0 auto 2.5rem;
+    }
+
+    .divider-line {
+      width: 48px;
+      height: 1px;
+      background: #a07840;
+      opacity: 0.55;
+    }
+
+    .divider-gem {
+      width: 7px;
+      height: 7px;
+      background: #a07840;
+      transform: rotate(45deg);
+      opacity: 0.85;
+    }
+
+    /* ── Gallery Grid ── */
+    .gallery-section {
+      padding: 0 2rem 6rem;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+      background: #2a2018;
+    }
+
+    .gallery-item {
+      position: relative;
+      overflow: hidden;
+      background: #12100d;
+      cursor: pointer;
+      aspect-ratio: 4/5;
+    }
+
+    .gallery-item.featured {
+      grid-column: span 2;
+      aspect-ratio: 16/9;
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      transition: transform 0.6s ease, opacity 0.3s ease;
+      opacity: 0.88;
+    }
+
+    .gallery-item:hover img {
+      transform: scale(1.04);
+      opacity: 1;
+    }
+
+    .gallery-caption {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 2rem 1.5rem 1.25rem;
+      background: linear-gradient(to top, rgba(18,14,10,0.92) 0%, transparent 100%);
+      transform: translateY(100%);
+      transition: transform 0.35s ease;
+    }
+
+    .gallery-item:hover .gallery-caption {
+      transform: translateY(0);
+    }
+
+    .caption-title {
+      font-family: 'Cinzel', serif;
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #e8d9b0;
+      margin-bottom: 0.4rem;
+    }
+
+    .caption-desc {
+      font-family: 'EB Garamond', serif;
+      font-style: italic;
+      font-size: 14px;
+      color: #9a8660;
+      line-height: 1.5;
+    }
+
+    /* ── Lightbox ── */
+    .lightbox {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(12, 10, 8, 0.95);
+      z-index: 200;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+    }
+
+    .lightbox.open { display: flex; }
+
+    .lightbox-inner {
+      position: relative;
+      max-width: 860px;
+      width: 100%;
+      text-align: center;
+    }
+
+    .lightbox-inner img {
+      max-height: 80vh;
+      max-width: 100%;
+      object-fit: contain;
+      border: 1px solid #3a2e1e;
+    }
+
+    .lightbox-close {
+      position: absolute;
+      top: -2.5rem;
+      right: 0;
+      font-family: 'Cinzel', serif;
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #5a5040;
+      background: none;
+      border: none;
+      cursor: pointer;
+      transition: color 0.2s ease;
+    }
+
+    .lightbox-close:hover { color: #e8d9b0; }
+
+    .lightbox-caption {
+      margin-top: 1.25rem;
+    }
+
+    .lightbox-caption .caption-title {
+      font-size: 12px;
+      letter-spacing: 0.22em;
+    }
+
+    .lightbox-caption .caption-desc {
+      font-size: 16px;
+    }
+
+    /* ── Artist Note ── */
+    .artist-note {
+      padding: 4rem 2rem;
+      border-top: 1px solid #2a2018;
+      max-width: 680px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .artist-note p {
+      font-size: clamp(17px, 2vw, 20px);
+      line-height: 1.85;
+      color: #c4b48e;
+      margin-bottom: 1.5rem;
+    }
+
+    .artist-note p em {
+      color: #ddd0aa;
+      font-style: italic;
+    }
+
+    /* ── Back to Collections ── */
+    .back-strip {
+      padding: 3rem 2rem;
+      border-top: 1px solid #2a2018;
+      text-align: center;
+    }
+
+    .back-link {
+      display: inline-block;
+      font-family: 'Cinzel', serif;
+      font-size: 10px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: #a07840;
+      border: 1px solid rgba(160, 120, 64, 0.6);
+      padding: 10px 28px;
+      text-decoration: none;
+      transition: background 0.2s ease, color 0.2s ease;
+    }
+
+    .back-link:hover {
+      background: rgba(160, 120, 64, 0.1);
+      color: #c8a060;
+    }
+
+    /* ── Footer ── */
+    footer {
+      padding: 2rem;
+      border-top: 1px solid #2a2018;
+      text-align: center;
+      font-family: 'Cinzel', serif;
+      font-size: 10px;
+      letter-spacing: 0.15em;
+      color: #4a4030;
+    }
+
+    footer a {
+      color: #5a5040;
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+
+    footer a:hover { color: #9a8660; }
+
+    /* ── Responsive ── */
+    @media (max-width: 860px) {
+      .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+      .gallery-item.featured {
+        grid-column: span 2;
+        aspect-ratio: 4/3;
+      }
+    }
+
+    @media (max-width: 600px) {
+      nav { padding: 1rem 1.5rem; }
+      .nav-links { gap: 1rem; }
+      .nav-links a { font-size: 9px; letter-spacing: 0.12em; }
+      .gallery-grid { grid-template-columns: 1fr; }
+      .gallery-item.featured { grid-column: span 1; aspect-ratio: 4/5; }
+      .gallery-caption { transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="/" class="nav-logo">Lore Faire</a>
+    <ul class="nav-links">
+      <li><a href="/#about">About</a></li>
+      <li><a href="/#collections">Collections</a></li>
+      <li><a href="/#book">The Scribe</a></li>
+      <li><a href="/#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <div class="page-header">
+    <p class="breadcrumb">
+      <a href="/">Lore Faire</a>
+      <span>—</span>
+      Collections
+      <span>—</span>
+      Fine Art
+    </p>
+    <span class="section-label">The Studio</span>
+    <h1>Fine Art</h1>
+    <p class="page-intro">
+      Not every piece wants to be worn. Some want to be witnessed —
+      painted worlds, mixed media canvases, silhouettes, and assemblages
+      born from the same imagination that makes everything else here.
+    </p>
+    <div class="divider">
+      <div class="divider-line"></div>
+      <div class="divider-gem"></div>
+      <div class="divider-line"></div>
+    </div>
+  </div>
+
+  <section class="gallery-section">
+    <div class="gallery-grid">
+
+      <!-- Featured / Hero piece -->
+      <div class="gallery-item featured" onclick="openLightbox(this)">
+        <img src="art/umbreon.jpg" alt="Umbreon mixed media canvas — acrylic and silver filigree embellishments on canvas" />
+        <div class="gallery-caption">
+          <p class="caption-title">Moonlit Guardian</p>
+          <p class="caption-desc">Acrylic & silver filigree on canvas — mixed media</p>
+        </div>
+      </div>
+
+      <div class="gallery-item" onclick="openLightbox(this)">
+        <img src="art/crescent-moon.jpg" alt="Crescent moon painting in teal and gold acrylic with star spatter" />
+        <div class="gallery-caption">
+          <p class="caption-title">The Watcher</p>
+          <p class="caption-desc">Acrylic on canvas — teal, cobalt & gold</p>
+        </div>
+      </div>
+
+      <div class="gallery-item" onclick="openLightbox(this)">
+        <img src="art/cats-herringbone.jpg" alt="Two cats painted in herringbone pattern — black on rose and gold on teal" />
+        <div class="gallery-caption">
+          <p class="caption-title">Tessellated Cats</p>
+          <p class="caption-desc">Acrylic on canvas — a study in pattern & silhouette</p>
+        </div>
+      </div>
+
+      <div class="gallery-item" onclick="openLightbox(this)">
+        <img src="art/dice-assemblage.jpg" alt="Framed assemblage — D20, snake, sword, gears and filigree leaves" />
+        <div class="gallery-caption">
+          <p class="caption-title">The Critical Roll</p>
+          <p class="caption-desc">Found object assemblage — framed mixed media</p>
+        </div>
+      </div>
+
+      <div class="gallery-item" onclick="openLightbox(this)">
+        <img src="art/deerling-shadowbox.jpg" alt="Deerling terrarium shadowbox with miniature desk, scroll and dried moss" />
+        <div class="gallery-caption">
+          <p class="caption-title">The Scholar's Garden</p>
+          <p class="caption-desc">Shadow box assemblage — found objects & botanicals</p>
+        </div>
+      </div>
+
+      <div class="gallery-item" onclick="openLightbox(this)">
+        <img src="art/owls-wood.jpg" alt="Three owl faces painted on wood slice rounds" />
+        <div class="gallery-caption">
+          <p class="caption-title">The Parliament</p>
+          <p class="caption-desc">Acrylic on wood slice — three studies in owl</p>
+        </div>
+      </div>
+
+      <div class="gallery-item" onclick="openLightbox(this)">
+        <img src="art/gold-cat.jpg" alt="Cat silhouette in gold stippling on white canvas" />
+        <div class="gallery-caption">
+          <p class="caption-title">Gilded</p>
+          <p class="caption-desc">Gold stipple on canvas — a study in absence and presence</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Lightbox -->
+  <div class="lightbox" id="lightbox" onclick="closeLightbox(event)">
+    <div class="lightbox-inner">
+      <button class="lightbox-close" onclick="closeLightbox()">✕ &nbsp;Close</button>
+      <img id="lightbox-img" src="" alt="" />
+      <div class="lightbox-caption">
+        <p class="caption-title" id="lightbox-title"></p>
+        <p class="caption-desc" id="lightbox-desc"></p>
+      </div>
+    </div>
+  </div>
+
+  <section class="artist-note">
+    <span class="section-label">A note from the maker</span>
+    <p>
+      These pieces don't begin with a plan. They begin with a color, a found object,
+      a character that won't leave the imagination alone. The jewelry and the paintings
+      come from the same place — <em>curiosity, obsession, and a deep unwillingness to stop
+      at the expected medium.</em>
+    </p>
+    <p>
+      If something calls to you, it was probably made for you.
+    </p>
+    <div class="divider" style="margin-top: 1rem;">
+      <div class="divider-line"></div>
+      <div class="divider-gem"></div>
+      <div class="divider-line"></div>
+    </div>
+  </section>
+
+  <div class="back-strip">
+    <a href="/#collections" class="back-link">← Return to Collections</a>
+  </div>
+
+  <footer>
+    <p>&copy; 2025 Lore Faire &nbsp;&mdash;&nbsp; Acworth, Georgia &nbsp;&mdash;&nbsp;
+    <a href="#">Legal Notice</a> &nbsp;|&nbsp; <a href="#">Privacy Policy</a></p>
+  </footer>
+
+  <script>
+    function openLightbox(item) {
+      const img = item.querySelector('img');
+      const title = item.querySelector('.caption-title');
+      const desc = item.querySelector('.caption-desc');
+      document.getElementById('lightbox-img').src = img.src;
+      document.getElementById('lightbox-img').alt = img.alt;
+      document.getElementById('lightbox-title').textContent = title.textContent;
+      document.getElementById('lightbox-desc').textContent = desc.textContent;
+      document.getElementById('lightbox').classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeLightbox(event) {
+      if (!event || event.target === document.getElementById('lightbox') || event.target.classList.contains('lightbox-close')) {
+        document.getElementById('lightbox').classList.remove('open');
+        document.body.style.overflow = '';
+      }
+    }
+
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape') closeLightbox();
+    });
+  </script>
+
+</body>
+</html>
