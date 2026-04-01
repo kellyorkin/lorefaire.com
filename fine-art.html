@@ -83,7 +83,6 @@
     }
 
     .breadcrumb a:hover { color: #9a8660; }
-
     .breadcrumb span { margin: 0 0.75rem; }
 
     .section-label {
@@ -137,59 +136,52 @@
       opacity: 0.85;
     }
 
-    /* ── Gallery Grid ── */
+    /* ── Masonry Gallery ── */
     .gallery-section {
       padding: 0 2rem 6rem;
       max-width: 1100px;
       margin: 0 auto;
     }
 
-    .gallery-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 2px;
-      background: #2a2018;
+    .masonry {
+      columns: 3;
+      column-gap: 3px;
     }
 
-    .gallery-item {
+    .masonry-item {
+      break-inside: avoid;
+      margin-bottom: 3px;
       position: relative;
       overflow: hidden;
-      background: #12100d;
       cursor: pointer;
-      aspect-ratio: 4/5;
+      background: #12100d;
     }
 
-    .gallery-item.featured {
-      grid-column: span 2;
-      aspect-ratio: 16/9;
-    }
-
-    .gallery-item img {
+    .masonry-item img {
       width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: center;
-      transition: transform 0.6s ease, opacity 0.3s ease;
+      height: auto;
+      display: block;
       opacity: 0.88;
+      transition: transform 0.6s ease, opacity 0.3s ease;
     }
 
-    .gallery-item:hover img {
-      transform: scale(1.04);
+    .masonry-item:hover img {
+      transform: scale(1.03);
       opacity: 1;
     }
 
-    .gallery-caption {
+    .masonry-caption {
       position: absolute;
       bottom: 0;
       left: 0;
       right: 0;
-      padding: 2rem 1.5rem 1.25rem;
+      padding: 2.5rem 1.25rem 1.25rem;
       background: linear-gradient(to top, rgba(18,14,10,0.92) 0%, transparent 100%);
       transform: translateY(100%);
       transition: transform 0.35s ease;
     }
 
-    .gallery-item:hover .gallery-caption {
+    .masonry-item:hover .masonry-caption {
       transform: translateY(0);
     }
 
@@ -215,7 +207,7 @@
       display: none;
       position: fixed;
       inset: 0;
-      background: rgba(12, 10, 8, 0.95);
+      background: rgba(12, 10, 8, 0.96);
       z-index: 200;
       align-items: center;
       justify-content: center;
@@ -226,7 +218,7 @@
 
     .lightbox-inner {
       position: relative;
-      max-width: 860px;
+      max-width: 900px;
       width: 100%;
       text-align: center;
     }
@@ -259,14 +251,8 @@
       margin-top: 1.25rem;
     }
 
-    .lightbox-caption .caption-title {
-      font-size: 12px;
-      letter-spacing: 0.22em;
-    }
-
-    .lightbox-caption .caption-desc {
-      font-size: 16px;
-    }
+    .lightbox-caption .caption-title { font-size: 12px; letter-spacing: 0.22em; }
+    .lightbox-caption .caption-desc { font-size: 16px; }
 
     /* ── Artist Note ── */
     .artist-note {
@@ -289,7 +275,7 @@
       font-style: italic;
     }
 
-    /* ── Back to Collections ── */
+    /* ── Back strip ── */
     .back-strip {
       padding: 3rem 2rem;
       border-top: 1px solid #2a2018;
@@ -325,30 +311,17 @@
       color: #4a4030;
     }
 
-    footer a {
-      color: #5a5040;
-      text-decoration: none;
-      transition: color 0.2s ease;
-    }
-
+    footer a { color: #5a5040; text-decoration: none; transition: color 0.2s ease; }
     footer a:hover { color: #9a8660; }
 
     /* ── Responsive ── */
-    @media (max-width: 860px) {
-      .gallery-grid { grid-template-columns: repeat(2, 1fr); }
-      .gallery-item.featured {
-        grid-column: span 2;
-        aspect-ratio: 4/3;
-      }
-    }
-
-    @media (max-width: 600px) {
+    @media (max-width: 860px) { .masonry { columns: 2; } }
+    @media (max-width: 540px) {
       nav { padding: 1rem 1.5rem; }
       .nav-links { gap: 1rem; }
       .nav-links a { font-size: 9px; letter-spacing: 0.12em; }
-      .gallery-grid { grid-template-columns: 1fr; }
-      .gallery-item.featured { grid-column: span 1; aspect-ratio: 4/5; }
-      .gallery-caption { transform: translateY(0); }
+      .masonry { columns: 1; }
+      .masonry-caption { transform: translateY(0); }
     }
   </style>
 </head>
@@ -387,60 +360,59 @@
   </div>
 
   <section class="gallery-section">
-    <div class="gallery-grid">
+    <div class="masonry">
 
-      <!-- Featured / Hero piece -->
-      <div class="gallery-item featured" onclick="openLightbox(this)">
-        <img src="art/umbreon.jpg" alt="Umbreon mixed media canvas — acrylic and silver filigree embellishments on canvas" />
-        <div class="gallery-caption">
+      <div class="masonry-item" onclick="openLightbox(this)">
+        <img src="art/umbreon.jpg" alt="Umbreon mixed media canvas — acrylic and silver filigree on canvas" />
+        <div class="masonry-caption">
           <p class="caption-title">Moonlit Guardian</p>
           <p class="caption-desc">Acrylic & silver filigree on canvas — mixed media</p>
         </div>
       </div>
 
-      <div class="gallery-item" onclick="openLightbox(this)">
-        <img src="art/crescent-moon.jpg" alt="Crescent moon painting in teal and gold acrylic with star spatter" />
-        <div class="gallery-caption">
+      <div class="masonry-item" onclick="openLightbox(this)">
+        <img src="art/crescent-moon.jpg" alt="Crescent moon in teal and gold acrylic with star spatter" />
+        <div class="masonry-caption">
           <p class="caption-title">The Watcher</p>
           <p class="caption-desc">Acrylic on canvas — teal, cobalt & gold</p>
         </div>
       </div>
 
-      <div class="gallery-item" onclick="openLightbox(this)">
-        <img src="art/cats-herringbone.jpg" alt="Two cats painted in herringbone pattern — black on rose and gold on teal" />
-        <div class="gallery-caption">
-          <p class="caption-title">Tessellated Cats</p>
-          <p class="caption-desc">Acrylic on canvas — a study in pattern & silhouette</p>
-        </div>
-      </div>
-
-      <div class="gallery-item" onclick="openLightbox(this)">
-        <img src="art/dice-assemblage.jpg" alt="Framed assemblage — D20, snake, sword, gears and filigree leaves" />
-        <div class="gallery-caption">
-          <p class="caption-title">The Critical Roll</p>
-          <p class="caption-desc">Found object assemblage — framed mixed media</p>
-        </div>
-      </div>
-
-      <div class="gallery-item" onclick="openLightbox(this)">
-        <img src="art/deerling-shadowbox.jpg" alt="Deerling terrarium shadowbox with miniature desk, scroll and dried moss" />
-        <div class="gallery-caption">
-          <p class="caption-title">The Scholar's Garden</p>
-          <p class="caption-desc">Shadow box assemblage — found objects & botanicals</p>
-        </div>
-      </div>
-
-      <div class="gallery-item" onclick="openLightbox(this)">
+      <div class="masonry-item" onclick="openLightbox(this)">
         <img src="art/owls-wood.jpg" alt="Three owl faces painted on wood slice rounds" />
-        <div class="gallery-caption">
+        <div class="masonry-caption">
           <p class="caption-title">The Parliament</p>
           <p class="caption-desc">Acrylic on wood slice — three studies in owl</p>
         </div>
       </div>
 
-      <div class="gallery-item" onclick="openLightbox(this)">
+      <div class="masonry-item" onclick="openLightbox(this)">
+        <img src="art/cats-herringbone.jpg" alt="Two cats in herringbone pattern — black on rose and gold on teal" />
+        <div class="masonry-caption">
+          <p class="caption-title">Tessellated Cats</p>
+          <p class="caption-desc">Acrylic on canvas — a study in pattern & silhouette</p>
+        </div>
+      </div>
+
+      <div class="masonry-item" onclick="openLightbox(this)">
+        <img src="art/dice-assemblage.jpg" alt="Framed assemblage — D20, snake, sword, gears and filigree leaves" />
+        <div class="masonry-caption">
+          <p class="caption-title">The Critical Roll</p>
+          <p class="caption-desc">Found object assemblage — framed mixed media</p>
+        </div>
+      </div>
+
+      <div class="masonry-item" onclick="openLightbox(this)">
+        <img src="art/deerling-shadowbox.jpg" alt="Deerling terrarium shadowbox with miniature desk, scroll and dried moss" />
+        <div class="masonry-caption">
+          <p class="caption-title">The Scholar's Garden</p>
+          <p class="caption-desc">Shadow box assemblage — found objects & botanicals</p>
+        </div>
+      </div>
+
+      <div class="masonry-item" onclick="openLightbox(this)">
         <img src="art/gold-cat.jpg" alt="Cat silhouette in gold stippling on white canvas" />
-        <div class="gallery-caption">
+        <div class="masonry-caption">
           <p class="caption-title">Gilded</p>
           <p class="caption-desc">Gold stipple on canvas — a study in absence and presence</p>
         </div>
