@@ -233,7 +233,7 @@
 
     .collections-grid {
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
       gap: 1px;
       background: #3a2e1e;
       border: 1px solid #3a2e1e;
@@ -276,86 +276,46 @@
     .book-section {
       padding: 5rem 2rem;
       border-top: 1px solid #2a2018;
-      max-width: 900px;
+      max-width: 860px;
       margin: 0 auto;
     }
 
     .book-inner {
       display: grid;
-      grid-template-columns: 280px 1fr;
-      gap: 4rem;
-      align-items: start;
+      grid-template-columns: 220px 1fr;
+      gap: 3rem;
+      align-items: center;
     }
 
-    .book-cover-wrap {
-      position: relative;
-    }
-
-    .book-cover-wrap img {
+    .book-cover {
       width: 100%;
       border: 1px solid #3a2e1e;
       display: block;
-      filter: sepia(0.15);
     }
 
-    .book-cover-caption {
-      font-size: 11px;
-      font-style: italic;
-      color: #4a4030;
-      margin-top: 0.75rem;
-      line-height: 1.5;
-      text-align: center;
-    }
+    .book-text { text-align: left; }
 
-    .book-content { }
-
-    .book-eyebrow {
-      font-family: 'Cinzel', serif;
-      font-size: 10px;
-      letter-spacing: 0.28em;
-      text-transform: uppercase;
-      color: #a07840;
-      display: block;
-      margin-bottom: 1rem;
-    }
+    .book-text .section-label { text-align: left; }
 
     .book-title {
       font-family: 'Cinzel', serif;
-      font-size: clamp(20px, 3vw, 28px);
+      font-size: clamp(18px, 3vw, 26px);
       font-weight: 600;
       color: #e8d9b0;
-      line-height: 1.2;
-      margin-bottom: 0.5rem;
+      line-height: 1.3;
+      margin-bottom: 1rem;
     }
 
-    .book-subtitle {
-      font-family: 'EB Garamond', serif;
-      font-style: italic;
-      font-size: 16px;
-      color: #7a6e58;
-      margin-bottom: 2rem;
-    }
-
-    .book-synopsis {
-      font-size: clamp(15px, 1.8vw, 17px);
-      line-height: 1.9;
+    .book-text p {
+      font-size: clamp(16px, 1.8vw, 18px);
+      line-height: 1.85;
       color: #c4b48e;
-      margin-bottom: 2rem;
+      margin-bottom: 1.5rem;
     }
 
-    .book-synopsis em {
+    .book-text p em {
       color: #ddd0aa;
       font-style: italic;
-    }
-
-    .book-closing {
-      font-size: clamp(15px, 1.8vw, 17px);
-      font-style: italic;
-      color: #9a8660;
-      border-left: 2px solid #3a2e1e;
-      padding-left: 1.25rem;
-      margin-bottom: 2rem;
-      line-height: 1.8;
     }
 
     .book-link {
@@ -366,13 +326,13 @@
       text-transform: uppercase;
       color: #a07840;
       border: 1px solid rgba(160, 120, 64, 0.6);
-      padding: 10px 28px;
+      padding: 10px 24px;
       text-decoration: none;
       transition: background 0.2s ease, color 0.2s ease;
     }
 
     .book-link:hover {
-      background: rgba(160, 120, 64, 0.12);
+      background: rgba(160, 120, 64, 0.1);
       color: #c8a060;
     }
 
@@ -428,15 +388,17 @@
     footer a:hover { color: #9a8660; }
 
     /* ── Responsive ── */
-    @media (max-width: 700px) {
+    @media (max-width: 680px) {
       nav { padding: 1rem 1.5rem; }
       .nav-links { gap: 1.5rem; }
       .collections-grid { grid-template-columns: repeat(2, 1fr); }
       .book-inner {
         grid-template-columns: 1fr;
-        gap: 2rem;
+        text-align: center;
       }
-      .book-cover-wrap { max-width: 240px; margin: 0 auto; }
+      .book-cover { max-width: 240px; margin: 0 auto; }
+      .book-text { text-align: center; }
+      .book-text .section-label { text-align: center; }
     }
   </style>
 </head>
@@ -447,7 +409,7 @@
     <ul class="nav-links">
       <li><a href="#about">About</a></li>
       <li><a href="#collections">Collections</a></li>
-      <li><a href="#book">The Book</a></li>
+      <li><a href="#book">The Scribe</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
   </nav>
@@ -468,7 +430,9 @@
     <div class="hero-slide">
       <img src="hero5.jpg" alt="Dragon pendants in silver, purple, green, and bronze" />
     </div>
+
     <div class="hero-overlay"></div>
+
     <div class="hero-content">
       <div class="hero-rule"></div>
       <h1>Lore Faire</h1>
@@ -480,6 +444,7 @@
       </div>
       <span class="badge">Full gallery coming soon</span>
     </div>
+
     <div class="slide-dots">
       <button class="dot active" onclick="goToSlide(0)"></button>
       <button class="dot" onclick="goToSlide(1)"></button>
@@ -493,16 +458,13 @@
     <span class="section-label">The maker</span>
     <p>
       Somewhere between a <em>renaissance faire</em> and a candlelit library, you'll find the spirit of Lore Faire —
-      a maker's world of handcrafted jewelry, wearable art, and curiosities that <em>resist easy categories.</em>
+      a maker's collection of handcrafted jewelry, wearable art, and curiosities born from
+      <em>D&amp;D campaigns, woodland wanderings,</em> and a deep love of the handmade.
     </p>
     <p>
-      Dragon claw pendants. Tarot charm bracelets. Celtic knotwork. Steampunk timepieces.
-      <em>Victorian curiosities. Painted worlds. Miniature terrariums.</em> And one rather improbable novel
-      involving Sherlock Holmes, a twelve-year-old named Bertie, and a coded telegram about raisin biscuits.
-    </p>
-    <p>
-      Everything here began the same way — with a material, an idea, and the stubborn conviction that it would be
-      interesting to see what happened next. <em>It usually was.</em>
+      Each piece carries its own story. Dragon claw pendants. Tarot charm bracelets. Celtic knotwork.
+      <em>Steampunk timepieces. Painted worlds. Miniature terrariums.</em>
+      No two quite the same — because that was never the point.
     </p>
     <div class="divider" style="margin-top: 2.5rem;">
       <div class="divider-line"></div>
@@ -544,51 +506,27 @@
         <span class="collection-name">Terrariums</span>
         <span class="collection-note">coming soon</span>
       </div>
-      <div class="collection-item">
-        <span class="collection-icon">🎩</span>
-        <span class="collection-name">Victorian</span>
-        <span class="collection-note">coming soon</span>
-      </div>
-      <div class="collection-item">
-        <span class="collection-icon">📖</span>
-        <span class="collection-name">The Book</span>
-        <span class="collection-note"><a href="#book" style="color: #a07840; text-decoration: none;">available now</a></span>
-      </div>
     </div>
   </section>
 
-  <!-- ── Book Section ── -->
   <section class="book-section" id="book">
     <div class="book-inner">
-      <div class="book-cover-wrap">
-        <img src="book-cover.png" alt="Telegraph Office — cover illustration for The Adventure of the Colonial Victory" />
-        <p class="book-cover-caption">Cover illustration generated via Microsoft Copilot from an original prompt by the author.</p>
-      </div>
-      <div class="book-content">
-        <span class="book-eyebrow">From the maker's desk</span>
+      <img class="book-cover" src="book-cover.png" alt="The Adventure of the Colonial Victory book cover" />
+      <div class="book-text">
+        <span class="section-label">From the scribe's desk</span>
         <h2 class="book-title">The Adventure of the Colonial Victory</h2>
-        <p class="book-subtitle">A Doyle mystery wrapped in a Wodehouse comedy</p>
-        <p class="book-synopsis">
-          When a coded telegram arrives at the Foreign Office — apparently requesting that raisin biscuits
-          be dispatched to a Brigadier in Suffolk — it is filed under miscellany and promptly forgotten.
-          It takes Sherlock Holmes approximately four minutes to recognise it as the most significant
-          communication to cross his desk in a year.
+        <p>
+          Before he was <em>Jeeves</em>, he was Reggie — a Baker Street Irregular drawn into a mystery
+          that Sherlock Holmes must navigate, Watson gets to narrate with bemused delight,
+          and Bertie Wooster would have made infinitely worse.
         </p>
-        <p class="book-synopsis">
-          So begins an improbable week at Wooster Hall, where Holmes and Dr. Watson find themselves guests
-          of a household presided over by a Brigadier whose primary intelligence concern is a large black dog,
-          twins conducting field research of uncertain scientific value, and a twelve-year-old boy named Bertie
-          who faces everything — including a colonial conspiracy — with the serene goodwill of someone who has
-          <em>genuinely never considered that things might not work out.</em>
+        <p>
+          A love letter to Wodehouse and Conan Doyle, ending on three words that change everything:
+          <em>I am Jeeves.</em>
         </p>
-        <p class="book-synopsis">
-          There is also a young manservant named Reggie, who says very little, notices everything, and appears
-          to have the situation entirely in hand.
-        </p>
-        <p class="book-closing">
-          The story of a week that changed nothing — except, very quietly, everything.
-        </p>
-        <a class="book-link" href="https://www.amazon.com/Adventure-Colonial-Victory-Delightful-Wodehouse/dp/B0GRWYL8LR/" target="_blank" rel="noopener">Read on Amazon</a>
+        <a class="book-link" href="https://www.amazon.com/Adventure-Colonial-Victory-Delightful-Wodehouse/dp/B0GRWYL8LR/" target="_blank" rel="noopener">
+          Read on Amazon
+        </a>
       </div>
     </div>
   </section>
@@ -599,7 +537,7 @@
       The full gallery is being assembled — but there are boxes of wonders already waiting.
       Reach out and let's find what belongs with you.
     </p>
-    <a href="mailto:thedoctor@watscroft.com">thedoctor@watscroft.com</a>
+    <a href="mailto:thescribe@lorefaire.com">thescribe@lorefaire.com</a>
   </section>
 
   <footer>
