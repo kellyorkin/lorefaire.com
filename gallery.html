@@ -398,52 +398,58 @@
 
        Mix and match freely. Order here = order on the page.
        ═══════════════════════════════════════════════════════════════ */
-    // ── SKELETON wired by Code: every `file` below is a real image in images/.
-    //    BC — fill in `title:` (the evocative name) and `note:` (short descriptor),
-    //    reorder freely, and delete any you don't want shown. While a title is
-    //    blank, the gallery auto-renders a placeholder from the filename.
-    //    Heads-up: the *-display / mixed-display shots are scene/booth photos
-    //    (several pieces at once), not single products — you may want to cut those.
     const PIECES = [
-      { file: "collection-booth-display-01.jpg",      title: "", note: "" },
-      { file: "collection-dice-shadowbox-01.jpg",     title: "", note: "" },
-      { file: "collection-dice-shadowbox-02.jpg",     title: "", note: "" },
-      { file: "collection-dnd-art-frame-01.jpg",      title: "", note: "" },
-      { file: "collection-dragons-01.jpg",            title: "", note: "" },
-      { file: "collection-dragons-02.jpg",            title: "", note: "" },
-      { file: "collection-dragons-display-01.jpg",    title: "", note: "" },
-      { file: "collection-dragons-display-02.jpg",    title: "", note: "" },
-      { file: "collection-earrings-01.jpg",           title: "", note: "" },
-      { file: "collection-earrings-02.jpg",           title: "", note: "" },
-      { file: "collection-fantasy-celtic-01.jpg",     title: "", note: "" },
-      { file: "collection-mixed-display-01.jpg",      title: "", note: "" },
-      { file: "collection-pendants-cameo-01.jpg",     title: "", note: "" },
-      { file: "collection-pendants-dnd-crystal-01.jpg", title: "", note: "" },
-      { file: "collection-pendants-halloween-01.jpg", title: "", note: "" },
-      { file: "collection-pendants-mythos-01.jpg",    title: "", note: "" },
-      { file: "collection-pendants-mythos-02.jpg",    title: "", note: "" },
-      { file: "collection-pendants-mythos-03.jpg",    title: "", note: "" },
-      { file: "collection-pendants-mythos-04.jpg",    title: "", note: "" },
-      { file: "collection-pendants-steampunk-01.jpg", title: "", note: "" },
-      { file: "collection-pendants-steampunk-02.jpg", title: "", note: "" },
-      { file: "collection-pendants-tarot-01.jpg",     title: "", note: "" },
-      { file: "collection-pendants-tarot-02.jpg",     title: "", note: "" },
-      { file: "collection-pokemon-01.jpg",            title: "", note: "" },
-      { file: "collection-rings-dnd-01.jpg",          title: "", note: "" },
-      { file: "collection-rings-dnd-02.jpg",          title: "", note: "" },
-      { file: "collection-rings-filigree-01.jpg",     title: "", note: "" },
-      { file: "necklace-amazonite-arrow-01.jpg",      title: "", note: "" },
-      { file: "necklace-cat-mouse-01.jpg",            title: "", note: "" },
-      { file: "necklace-orbital-01.jpg",              title: "", note: "" },
-      { file: "necklace-scrollwork-01.jpg",           title: "", note: "" },
-      { file: "pendant-blue-flower-01.jpg",           title: "", note: "" },
-      { file: "pendant-dragon-green-01.jpg",          title: "", note: "" },
-      { file: "ring-bee-filigree-01.jpg",             title: "", note: "" },
-      { file: "ring-filigree-floral-01.jpg",          title: "", note: "" },
-      { file: "set-blue-floral-01.jpg",               title: "", note: "" },
-      { file: "set-cloisonne-bead-01.jpg",            title: "", note: "" },
-      { file: "set-cloisonne-heart-01.jpg",           title: "", note: "" },
-      { file: "set-pentagram-01.jpg",                 title: "", note: "" },
+      // Titles/notes are a FIRST PASS drafted from filenames, not the photos —
+      // skim and fix anything that doesn't match what's actually in frame
+      // (notes especially, where I guessed materials/colors from the name).
+
+      // Framed art — keep if these are pieces you sell; move to hero if they're staging shots
+      { file: "collection-dice-shadowbox-01.jpg", title: "Dice Shadowbox",     note: "framed dice, D&D" },
+      { file: "collection-dice-shadowbox-02.jpg", title: "Dice Shadowbox II",  note: "framed dice, D&D" },
+      { file: "collection-dnd-art-frame-01.jpg",  title: "Adventurer's Frame", note: "framed D&D art" },
+
+      { file: "collection-dragons-01.jpg",         title: "Wyrm",          note: "dragon pendant" },
+      { file: "collection-dragons-02.jpg",         title: "Drake",         note: "dragon pendant" },
+      { file: "collection-earrings-01.jpg",        title: "Faire Earrings",    note: "handmade pair — name from the photo" },
+      { file: "collection-earrings-02.jpg",        title: "Faire Earrings II", note: "handmade pair — name from the photo" },
+      { file: "collection-fantasy-celtic-01.jpg",  title: "Celtic Knot",   note: "knotwork, fantasy series" },
+      { file: "collection-pendants-cameo-01.jpg",  title: "The Cameo",     note: "carved cameo pendant" },
+      { file: "collection-pendants-dnd-crystal-01.jpg", title: "Crystal Focus", note: "D&D crystal pendant" },
+      { file: "collection-pendants-halloween-01.jpg",   title: "Hallow's Eve",  note: "halloween pendant" },
+      { file: "collection-pendants-mythos-01.jpg", title: "Mythos I",      note: "mythos series pendant" },
+      { file: "collection-pendants-mythos-02.jpg", title: "Mythos II",     note: "mythos series pendant" },
+      { file: "collection-pendants-mythos-03.jpg", title: "Mythos III",    note: "mythos series pendant" },
+      { file: "collection-pendants-mythos-04.jpg", title: "Mythos IV",     note: "mythos series pendant" },
+      { file: "collection-pendants-steampunk-01.jpg", title: "Clockwork",  note: "steampunk pendant, gears" },
+      { file: "collection-pendants-steampunk-02.jpg", title: "Cogsmith",   note: "steampunk pendant, gears" },
+      { file: "collection-pendants-tarot-01.jpg",  title: "Arcana",        note: "tarot pendant" },
+      { file: "collection-pendants-tarot-02.jpg",  title: "Arcana II",     note: "tarot pendant" },
+      { file: "collection-pokemon-01.jpg",         title: "Pocket Monster", note: "fan-art charm" },
+      { file: "collection-rings-dnd-01.jpg",       title: "Adventurer's Ring",    note: "D&D ring" },
+      { file: "collection-rings-dnd-02.jpg",       title: "Adventurer's Ring II", note: "D&D ring" },
+      { file: "collection-rings-filigree-01.jpg",  title: "Filigree Band", note: "filigree ring" },
+      { file: "necklace-amazonite-arrow-01.jpg",   title: "Amazonite Arrow", note: "arrowhead necklace, blue-green stone" },
+      { file: "necklace-cat-mouse-01.jpg",         title: "Cat & Mouse",   note: "playful paired necklace" },
+      { file: "necklace-orbital-01.jpg",           title: "Orbital",       note: "orbit-form necklace" },
+      { file: "necklace-scrollwork-01.jpg",        title: "Scrollwork",    note: "scrolled-metal necklace" },
+      { file: "pendant-blue-flower-01.jpg",        title: "Blue Blossom",  note: "enamel flower pendant" },
+      { file: "pendant-dragon-green-01.jpg",       title: "Verdant Drake", note: "green dragon pendant" },
+      { file: "ring-bee-filigree-01.jpg",          title: "The Bee",       note: "filigree bee ring" },
+      { file: "ring-filigree-floral-01.jpg",       title: "Floral Filigree", note: "floral filigree ring" },
+      { file: "set-blue-floral-01.jpg",            title: "Blue Floral Set", note: "matched set" },
+      { file: "set-cloisonne-bead-01.jpg",         title: "Cloisonné Beads", note: "cloisonné bead set" },
+      { file: "set-cloisonne-heart-01.jpg",        title: "Cloisonné Heart", note: "cloisonné heart set" },
+      { file: "set-pentagram-01.jpg",              title: "Pentagram",     note: "pentagram matched set" },
+
+      // ── Relocated per Code's note: booth/display scene-shots ──
+      // Atmosphere & multi-piece shots, not single specimens, so they fight the
+      // vitrine frame (its spotlight assumes one centered object). They're ideal
+      // for the homepage hero, which already dims images behind the overlay.
+      // Parked here so nothing's lost — say the word and I'll wire them in:
+      //   collection-booth-display-01.jpg
+      //   collection-dragons-display-01.jpg
+      //   collection-dragons-display-02.jpg
+      //   collection-mixed-display-01.jpg
     ];
 
     /* ── Nothing below here needs editing ── */
