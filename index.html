@@ -255,6 +255,52 @@
     }
     .contact a:hover { color: #c8a060; border-color: rgba(200, 160, 96, 0.6); }
 
+    /* ── Notify form (Segment email capture) ── */
+    .notify-form {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      justify-content: center;
+      margin-top: 2rem;
+    }
+
+    .notify-input {
+      font-family: 'EB Garamond', Georgia, serif;
+      font-size: 15px;
+      padding: 0.7rem 1rem;
+      min-width: 220px;
+      background: #12100d;
+      border: 1px solid #3a2e1e;
+      color: #d4c9a8;
+    }
+
+    .notify-input::placeholder { color: #6a5f48; }
+    .notify-input:focus { outline: none; border-color: #a07840; }
+
+    .notify-btn {
+      font-family: 'Cinzel', serif;
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #a07840;
+      background: none;
+      border: 1px solid rgba(160, 120, 64, 0.6);
+      padding: 0.7rem 1.4rem;
+      cursor: pointer;
+      transition: background 0.2s ease, color 0.2s ease;
+    }
+
+    .notify-btn:hover { background: rgba(160, 120, 64, 0.1); color: #c8a060; }
+    .notify-btn:disabled { opacity: 0.5; cursor: default; }
+
+    .notify-confirm {
+      font-family: 'EB Garamond', serif;
+      font-style: italic;
+      font-size: 15px;
+      color: #b8a47a;
+      margin-top: 1rem;
+    }
+
     /* ── Footer ── */
     footer {
       padding: 2rem;
@@ -286,6 +332,8 @@
       html { scroll-behavior: auto; }
     }
   </style>
+  <!-- Segment analytics (shared loader; inert until a write key is set) -->
+  <script src="segment-loader.js"></script>
 </head>
 <body>
 
@@ -443,8 +491,35 @@
       something particular, or a piece you spotted is already spoken for, write to me
       and we'll find what belongs with you.
     </p>
+    <a href="/cdn-cgi/l/email-protection#c0b4a8a5b3a3b2a9a2a580acafb2a5a6a1a9b2a5eea3afad"><span class="__cf_email__" data-cfemail="abdfc3ced8c8d9c2c9ceebc7c4d9cecdcac2d9ce85c8c4c6">[email&#160;protected]</span></a>
+
+    <form id="notify-form" class="notify-form" onsubmit="return loreFaireNotify(event)">
+      <input type="email" id="notify-email" class="notify-input" placeholder="your@email.com" required aria-label="Email address" />
+      <button type="submit" class="notify-btn">Notify me when the gallery opens</button>
+    </form>
+    <p class="notify-confirm" id="notify-confirm" hidden>Wonderful — you're on the list. We'll write when the gallery opens.</p>
     <a href="mailto:thescribe@lorefaire.com">thescribe@lorefaire.com</a>
   </section>
+
+  <script>
+    // Lore Faire — gallery notify form. Fires Segment identify + a capture event.
+    function loreFaireNotify(e) {
+      e.preventDefault();
+      var input = document.getElementById('notify-email');
+      var email = input.value.trim();
+      if (!email) return false;
+      // identify() with email as a trait and NO userId — this is the identity
+      // probe: does Klaviyo merge on email, or spawn a ghost profile?
+      if (window.analytics) {
+        window.analytics.identify({ email: email });
+        window.analytics.track('Email Captured', { email: email, source: 'gallery-notify' });
+      }
+      input.disabled = true;
+      e.target.querySelector('button').disabled = true;
+      document.getElementById('notify-confirm').hidden = false;
+      return false;
+    }
+  </script>
 
   <footer>
     <p>&copy; 2025 Lore Faire &nbsp;&mdash;&nbsp; Acworth, Georgia &nbsp;&mdash;&nbsp;
