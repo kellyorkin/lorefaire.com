@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lore Faire — The Gallery</title>
+  <meta name="description" content="The Lore Faire gallery — handcrafted, one-of-a-kind jewelry and curiosities, each made once and only once." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=EB+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet" />
+  <style>
+    /* ───────────────────────────────────────────────────────────
+       Tokens lifted directly from the Lore Faire homepage so the
+       gallery reads as the same site.
+       ─────────────────────────────────────────────────────────── */
+    :root {
+      --bg:        #1a1612;
+      --bg-dark:   #12100d;
+      --panel:     #211c15;
+      --line:      #3a2e1e;
+      --line-soft: #2a2018;
+      --gold:      #a07840;
+      --gold-lit:  #c8a060;
+      --cream:     #e8d9b0;
+      --parch:     #c4b48e;
+      --parch-dim: #9a8660;
+      --faint:     #5a5040;
+
+      /* Default image fit for every tile. Change to `cover` if your
+         photos are rectangular jpgs and you'd rather fill the tile
+         edge-to-edge (it will crop). `contain` (the default) shows
+         the whole piece — ideal for rembg transparent PNGs. */
+      --fit: contain;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'EB Garamond', Georgia, serif;
+      background-color: var(--bg);
+      color: var(--parch);
+      min-height: 100vh;
+    }
+
+    /* ── Navigation (matches homepage) ── */
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.25rem 3rem;
+      background: var(--bg-dark);
+      border-bottom: 1px solid var(--line);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .nav-logo {
+      font-family: 'Cinzel', serif;
+      font-size: 18px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      color: var(--cream);
+      text-decoration: none;
+    }
+    .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+    .nav-links a {
+      font-family: 'Cinzel', serif;
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--parch-dim);
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+    .nav-links a:hover,
+    .nav-links a.current { color: var(--cream); }
+    .nav-links a.current { border-bottom: 1px solid var(--gold); padding-bottom: 3px; }
+
+    /* ── Masthead ── */
+    .masthead {
+      text-align: center;
+      padding: 4.5rem 2rem 2.5rem;
+      max-width: 720px;
+      margin: 0 auto;
+    }
+    .eyebrow {
+      font-family: 'Cinzel', serif;
+      font-size: 10px;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--gold);
+      display: block;
+      margin-bottom: 1.4rem;
+    }
+    h1 {
+      font-family: 'Cinzel', serif;
+      font-size: clamp(34px, 6vw, 56px);
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      color: var(--cream);
+      line-height: 1.08;
+    }
+    .lede {
+      font-style: italic;
+      font-size: clamp(15px, 2.2vw, 19px);
+      color: var(--parch);
+      margin-top: 1rem;
+      line-height: 1.7;
+    }
+
+    /* ── Gem divider (the homepage signature) ── */
+    .divider {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      justify-content: center;
+      margin: 2rem auto 0;
+    }
+    .divider-line { width: 48px; height: 1px; background: var(--gold); opacity: 0.55; }
+    .divider-gem  { width: 7px; height: 7px; background: var(--gold); transform: rotate(45deg); opacity: 0.85; }
+
+    /* ── Gallery grid ── */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+      gap: 1.75rem;
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 3rem 2rem 5rem;
+    }
+
+    /* Each piece is a button so it's keyboard-reachable and opens the lightbox. */
+    .tile {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 0;
+      text-align: left;
+      font: inherit;
+      color: inherit;
+    }
+
+    /* The vitrine: a fixed-shape case with a warm spotlight behind the piece.
+       This is what turns a chaotic pile of photos into a matched set. */
+    .frame {
+      position: relative;
+      aspect-ratio: 4 / 5;
+      border: 1px solid var(--line);
+      background: radial-gradient(ellipse 72% 62% at 50% 40%, #2c2419 0%, #15110c 74%);
+      overflow: hidden;
+      transition: border-color 0.25s ease, transform 0.3s ease;
+    }
+    .frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: var(--fit);
+      padding: 12%;
+      filter: drop-shadow(0 8px 16px rgba(0,0,0,0.55));
+      transition: transform 0.4s ease;
+    }
+    /* Uniform edge-vignette over every image — unifies bright/busy photos
+       into the candlelit mood and hides mismatched corners. */
+    .frame::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      box-shadow: inset 0 0 70px 16px rgba(18,14,10,0.62);
+      pointer-events: none;
+    }
+
+    .tile:hover .frame,
+    .tile:focus-visible .frame { border-color: var(--gold); transform: translateY(-4px); }
+    .tile:hover .frame img { transform: scale(1.04); }
+    .tile:focus-visible { outline: none; }
+    .tile:focus-visible .frame { outline: 2px solid var(--gold-lit); outline-offset: 3px; }
+
+    /* Caption */
+    .cap { padding: 0.9rem 0.2rem 0; }
+    .cap .t {
+      font-family: 'Cinzel', serif;
+      font-size: 12px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--cream);
+      line-height: 1.3;
+    }
+    .cap .n {
+      font-family: 'EB Garamond', serif;
+      font-style: italic;
+      font-size: 14px;
+      color: var(--parch-dim);
+      margin-top: 3px;
+    }
+    .cap .p {
+      font-family: 'Cinzel', serif;
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      color: var(--gold);
+      margin-top: 7px;
+    }
+
+    /* Graceful placeholder for images that haven't arrived yet */
+    .ph {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 14px;
+    }
+    .ph .gem { width: 12px; height: 12px; background: var(--gold); transform: rotate(45deg); opacity: 0.5; }
+    .ph span {
+      font-family: 'Cinzel', serif;
+      font-size: 9px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--parch-dim);
+      opacity: 0.75;
+    }
+
+    /* Empty state */
+    .empty {
+      text-align: center;
+      color: var(--faint);
+      font-style: italic;
+      padding: 4rem 2rem 6rem;
+      font-size: 16px;
+    }
+
+    /* ── Lightbox ── */
+    .lb {
+      position: fixed;
+      inset: 0;
+      z-index: 1000;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 1.5rem;
+      background: rgba(10, 8, 6, 0.93);
+      -webkit-backdrop-filter: blur(4px);
+      backdrop-filter: blur(4px);
+      padding: 3rem 1.5rem;
+    }
+    .lb.open { display: flex; }
+    .lb-img {
+      max-width: min(900px, 92vw);
+      max-height: 74vh;
+      object-fit: contain;
+      filter: drop-shadow(0 22px 55px rgba(0,0,0,0.75));
+    }
+    .lb-cap { text-align: center; max-width: 600px; }
+    .lb-cap .t {
+      font-family: 'Cinzel', serif;
+      font-size: 15px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--cream);
+    }
+    .lb-cap .n {
+      font-family: 'EB Garamond', serif;
+      font-style: italic;
+      font-size: 16px;
+      color: var(--parch);
+      margin-top: 6px;
+    }
+    .lb-cap .p {
+      font-family: 'Cinzel', serif;
+      font-size: 12px;
+      letter-spacing: 0.14em;
+      color: var(--gold-lit);
+      margin-top: 10px;
+    }
+    .lb-cap .p a {
+      color: var(--gold-lit);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(200,160,96,0.4);
+      padding-bottom: 2px;
+    }
+    .lb-cap .p a:hover { color: var(--cream); }
+
+    .lb-btn {
+      position: absolute;
+      background: none;
+      border: 1px solid rgba(160,120,64,0.5);
+      color: var(--gold-lit);
+      width: 44px;
+      height: 44px;
+      cursor: pointer;
+      font-family: 'Cinzel', serif;
+      font-size: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+    }
+    .lb-btn:hover { background: rgba(160,120,64,0.12); color: var(--cream); border-color: var(--gold); }
+    .lb-btn:focus-visible { outline: 2px solid var(--gold-lit); outline-offset: 2px; }
+    .lb-close { top: 1.5rem; right: 1.5rem; }
+    .lb-prev  { left: 1.5rem;  top: 50%; transform: translateY(-50%); }
+    .lb-next  { right: 1.5rem; top: 50%; transform: translateY(-50%); }
+
+    /* ── Footer (matches homepage) ── */
+    footer {
+      padding: 2rem;
+      border-top: 1px solid var(--line-soft);
+      text-align: center;
+      font-family: 'Cinzel', serif;
+      font-size: 10px;
+      letter-spacing: 0.15em;
+      color: var(--faint);
+    }
+    footer a { color: var(--faint); text-decoration: none; transition: color 0.2s ease; }
+    footer a:hover { color: var(--parch-dim); }
+
+    /* ── Responsive ── */
+    @media (max-width: 600px) {
+      nav { padding: 1rem 1.5rem; }
+      .nav-links { gap: 1rem; }
+      .nav-links a { font-size: 9px; letter-spacing: 0.12em; }
+      .grid { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 1.1rem; padding: 2rem 1.25rem 4rem; }
+      .lb-prev { left: 0.5rem; } .lb-next { right: 0.5rem; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { transition: none !important; }
+      .tile:hover .frame, .tile:hover .frame img { transform: none; }
+      html { scroll-behavior: auto; }
+    }
+  </style>
+  <!-- Segment analytics (shared loader; inert until a write key is set) -->
+  <script src="segment-loader.js"></script>
+</head>
+<body>
+
+  <nav>
+    <a href="index.html" class="nav-logo">Lore Faire</a>
+    <ul class="nav-links">
+      <li><a href="index.html#about">About</a></li>
+      <li><a href="gallery.html" class="current">Gallery</a></li>
+      <li><a href="the-scribe.html">Scribe</a></li>
+      <li><a href="index.html#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <header class="masthead">
+    <span class="eyebrow">The Collection</span>
+    <h1>Curiosities, Gathered</h1>
+    <p class="lede">Each one made once, and only once. Wander the cases and find the piece that's been waiting for you.</p>
+    <div class="divider">
+      <div class="divider-line"></div>
+      <div class="divider-gem"></div>
+      <div class="divider-line"></div>
+    </div>
+  </header>
+
+  <main>
+    <section class="grid" id="grid" aria-label="Gallery of handcrafted pieces"></section>
+    <p class="empty" id="empty" hidden>The cases are being arranged. Check back soon.</p>
+  </main>
+
+  <!-- Lightbox -->
+  <div class="lb" id="lightbox" role="dialog" aria-modal="true" aria-label="Enlarged view">
+    <button class="lb-btn lb-close" id="lbClose" aria-label="Close">✕</button>
+    <button class="lb-btn lb-prev" id="lbPrev" aria-label="Previous piece">‹</button>
+    <button class="lb-btn lb-next" id="lbNext" aria-label="Next piece">›</button>
+    <img class="lb-img" id="lbImg" src="" alt="" />
+    <div class="lb-cap" id="lbCap"></div>
+  </div>
+
+  <footer>
+    <p>&copy; 2025 Lore Faire &nbsp;&mdash;&nbsp; Acworth, Georgia &nbsp;&mdash;&nbsp;
+    <a href="index.html#contact">Contact</a> &nbsp;|&nbsp; <a href="the-scribe.html">The Scribe</a></p>
+  </footer>
+
+  <script>
+    /* ═══════════════════════════════════════════════════════════════
+       EDIT HERE — this is the only part you touch to add pieces.
+
+       Drop your image files into an `images/` folder next to this page,
+       then list them below. Two ways to list a piece:
+
+         1. Just the filename (the title is auto-made from the name):
+              "dragon-claw-amethyst.png"      ->  "Dragon Claw Amethyst"
+
+         2. An object, when you want a note, a price, or a buy link:
+              { file: "celtic-stag.png",
+                title: "Celtic Stag",          // optional, overrides auto
+                note:  "knotwork pendant",      // optional
+                price: "$48",                   // optional
+                link:  "https://buy.stripe.com/..." } // optional Stripe link
+                fit:   "cover"                  // optional, overrides default
+
+       Mix and match freely. Order here = order on the page.
+       ═══════════════════════════════════════════════════════════════ */
+    const PIECES = [
+      // Titles/notes are a FIRST PASS drafted from filenames, not the photos —
+      // skim and fix anything that doesn't match what's actually in frame
+      // (notes especially, where I guessed materials/colors from the name).
+
+      // Framed art — keep if these are pieces you sell; move to hero if they're staging shots
+      { file: "collection-dice-shadowbox-01.jpg", title: "Dice Shadowbox",     note: "framed dice, D&D" },
+      { file: "collection-dice-shadowbox-02.jpg", title: "Dice Shadowbox II",  note: "framed dice, D&D" },
+      { file: "collection-dnd-art-frame-01.jpg",  title: "Adventurer's Frame", note: "framed D&D art" },
+
+      { file: "collection-dragons-01.jpg",         title: "Wyrm",          note: "dragon pendant" },
+      { file: "collection-dragons-02.jpg",         title: "Drake",         note: "dragon pendant" },
+      { file: "collection-earrings-01.jpg",        title: "Faire Earrings",    note: "handmade pair — name from the photo" },
+      { file: "collection-earrings-02.jpg",        title: "Faire Earrings II", note: "handmade pair — name from the photo" },
+      { file: "collection-fantasy-celtic-01.jpg",  title: "Celtic Knot",   note: "knotwork, fantasy series" },
+      { file: "collection-pendants-cameo-01.jpg",  title: "The Cameo",     note: "carved cameo pendant" },
+      { file: "collection-pendants-dnd-crystal-01.jpg", title: "Crystal Focus", note: "D&D crystal pendant" },
+      { file: "collection-pendants-halloween-01.jpg",   title: "Hallow's Eve",  note: "halloween pendant" },
+      { file: "collection-pendants-mythos-01.jpg", title: "Mythos I",      note: "mythos series pendant" },
+      { file: "collection-pendants-mythos-02.jpg", title: "Mythos II",     note: "mythos series pendant" },
+      { file: "collection-pendants-mythos-03.jpg", title: "Mythos III",    note: "mythos series pendant" },
+      { file: "collection-pendants-mythos-04.jpg", title: "Mythos IV",     note: "mythos series pendant" },
+      { file: "collection-pendants-steampunk-01.jpg", title: "Clockwork",  note: "steampunk pendant, gears" },
+      { file: "collection-pendants-steampunk-02.jpg", title: "Cogsmith",   note: "steampunk pendant, gears" },
+      { file: "collection-pendants-tarot-01.jpg",  title: "Arcana",        note: "tarot pendant" },
+      { file: "collection-pendants-tarot-02.jpg",  title: "Arcana II",     note: "tarot pendant" },
+      { file: "collection-pokemon-01.jpg",         title: "Pocket Monster", note: "fan-art charm" },
+      { file: "collection-rings-dnd-01.jpg",       title: "Adventurer's Ring",    note: "D&D ring" },
+      { file: "collection-rings-dnd-02.jpg",       title: "Adventurer's Ring II", note: "D&D ring" },
+      { file: "collection-rings-filigree-01.jpg",  title: "Filigree Band", note: "filigree ring" },
+      { file: "necklace-amazonite-arrow-01.jpg",   title: "Amazonite Arrow", note: "arrowhead necklace, blue-green stone" },
+      { file: "necklace-cat-mouse-01.jpg",         title: "Cat & Mouse",   note: "playful paired necklace" },
+      { file: "necklace-orbital-01.jpg",           title: "Orbital",       note: "orbit-form necklace" },
+      { file: "necklace-scrollwork-01.jpg",        title: "Scrollwork",    note: "scrolled-metal necklace" },
+      { file: "pendant-blue-flower-01.jpg",        title: "Blue Blossom",  note: "enamel flower pendant" },
+      { file: "pendant-dragon-green-01.jpg",       title: "Verdant Drake", note: "green dragon pendant" },
+      { file: "ring-bee-filigree-01.jpg",          title: "The Bee",       note: "filigree bee ring" },
+      { file: "ring-filigree-floral-01.jpg",       title: "Floral Filigree", note: "floral filigree ring" },
+      { file: "set-blue-floral-01.jpg",            title: "Blue Floral Set", note: "matched set" },
+      { file: "set-cloisonne-bead-01.jpg",         title: "Cloisonné Beads", note: "cloisonné bead set" },
+      { file: "set-cloisonne-heart-01.jpg",        title: "Cloisonné Heart", note: "cloisonné heart set" },
+      { file: "set-pentagram-01.jpg",              title: "Pentagram",     note: "pentagram matched set" },
+
+      // ── Relocated per Code's note: booth/display scene-shots ──
+      // Atmosphere & multi-piece shots, not single specimens, so they fight the
+      // vitrine frame (its spotlight assumes one centered object). They're ideal
+      // for the homepage hero, which already dims images behind the overlay.
+      // Parked here so nothing's lost — say the word and I'll wire them in:
+      //   collection-booth-display-01.jpg
+      //   collection-dragons-display-01.jpg
+      //   collection-dragons-display-02.jpg
+      //   collection-mixed-display-01.jpg
+    ];
+
+    /* ── Nothing below here needs editing ── */
+
+    function prettify(file) {
+      return file
+        .replace(/^.*\//, "")          // strip any path
+        .replace(/\.[a-z0-9]+$/i, "")  // strip extension
+        .replace(/[-_]+/g, " ")        // dashes/underscores -> spaces
+        .replace(/\s+/g, " ")
+        .trim()
+        .replace(/\b\w/g, c => c.toUpperCase());
+    }
+
+    function normalize(entry) {
+      const o = (typeof entry === "string") ? { file: entry } : { ...entry };
+      const f = o.file || "";
+      o.src   = (/^(https?:)?\/\//.test(f) || f.includes("/")) ? f : "images/" + f;
+      o.title = o.title || prettify(f);
+      o.note  = o.note  || "one of a kind";
+      return o;
+    }
+
+    const items = PIECES.map(normalize);
+    const grid  = document.getElementById("grid");
+    const empty = document.getElementById("empty");
+
+    if (!items.length) {
+      empty.hidden = false;
+    } else {
+      items.forEach((it, i) => {
+        const tile = document.createElement("button");
+        tile.className = "tile";
+        tile.setAttribute("aria-label", "View " + it.title);
+
+        const frame = document.createElement("div");
+        frame.className = "frame";
+        if (it.fit) frame.style.setProperty("--fit", it.fit);
+
+        const img = document.createElement("img");
+        img.src = it.src;
+        img.alt = it.title;
+        img.loading = "lazy";
+        img.onerror = function () {
+          frame.innerHTML =
+            '<div class="ph"><div class="gem"></div><span>coming soon</span></div>';
+        };
+        frame.appendChild(img);
+
+        const cap = document.createElement("div");
+        cap.className = "cap";
+        cap.innerHTML =
+          '<div class="t">' + it.title + '</div>' +
+          '<div class="n">' + it.note + '</div>' +
+          (it.price ? '<div class="p">' + it.price + '</div>' : '');
+
+        tile.appendChild(frame);
+        tile.appendChild(cap);
+        tile.addEventListener("click", () => openLightbox(i));
+        grid.appendChild(tile);
+      });
+    }
+
+    /* ── Lightbox ── */
+    const lb      = document.getElementById("lightbox");
+    const lbImg   = document.getElementById("lbImg");
+    const lbCap   = document.getElementById("lbCap");
+    const lbClose = document.getElementById("lbClose");
+    const lbPrev  = document.getElementById("lbPrev");
+    const lbNext  = document.getElementById("lbNext");
+    let current   = 0;
+    let lastFocus = null;
+
+    function showAt(i) {
+      current = (i + items.length) % items.length;
+      const it = items[current];
+      lbImg.src = it.src;
+      lbImg.alt = it.title;
+      lbCap.innerHTML =
+        '<div class="t">' + it.title + '</div>' +
+        '<div class="n">' + it.note + '</div>' +
+        (it.price
+          ? '<div class="p">' + it.price +
+            (it.link ? ' &nbsp;·&nbsp; <a href="' + it.link + '" target="_blank" rel="noopener">Acquire</a>' : '') +
+            '</div>'
+          : (it.link ? '<div class="p"><a href="' + it.link + '" target="_blank" rel="noopener">Acquire</a></div>' : ''));
+
+      // Segment: each piece brought into view = a Product Viewed event. Fires
+      // Segment's STANDARD name on purpose — the drift test vs Klaviyo's "Viewed Product".
+      if (window.analytics) {
+        window.analytics.track('Product Viewed', {
+          name: it.title, note: it.note, image_url: it.src, category: 'Gallery'
+        });
+      }
+    }
+
+    function openLightbox(i) {
+      lastFocus = document.activeElement;
+      showAt(i);
+      lb.classList.add("open");
+      lbClose.focus();
+    }
+    function closeLightbox() {
+      lb.classList.remove("open");
+      if (lastFocus) lastFocus.focus();
+    }
+
+    lbClose.addEventListener("click", closeLightbox);
+    lbPrev.addEventListener("click", () => showAt(current - 1));
+    lbNext.addEventListener("click", () => showAt(current + 1));
+    lb.addEventListener("click", (e) => { if (e.target === lb) closeLightbox(); });
+    document.addEventListener("keydown", (e) => {
+      if (!lb.classList.contains("open")) return;
+      if (e.key === "Escape") closeLightbox();
+      if (e.key === "ArrowLeft") showAt(current - 1);
+      if (e.key === "ArrowRight") showAt(current + 1);
+    });
+  </script>
+</body>
+</html>
