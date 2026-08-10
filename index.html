@@ -130,6 +130,7 @@
       color: #a07840;
       border: 1px solid rgba(160, 120, 64, 0.6);
       padding: 11px 28px;
+      white-space: nowrap;
       text-decoration: none;
       transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
     }
@@ -207,7 +208,7 @@
 
     /* ── Book Section ── */
     .book-section { padding: 5rem 2rem; border-top: 1px solid #2a2018; max-width: 860px; margin: 0 auto; }
-    .book-inner { display: grid; grid-template-columns: 220px 1fr; gap: 3rem; align-items: center; }
+    .book-inner { display: grid; grid-template-columns: 160px 1fr; gap: 3rem; align-items: center; }
     .book-cover { width: 100%; border: 1px solid #3a2e1e; display: block; }
     .book-text { text-align: left; }
     .book-text .section-label { text-align: left; }
@@ -335,30 +336,16 @@
   <nav>
     <a href="index.html" class="nav-logo">Lore Faire</a>
     <ul class="nav-links">
-      <li><a href="#about">About</a></li>
+      <li><a href="about.html">About</a></li>
       <li><a href="gallery.html">Gallery</a></li>
       <li><a href="art.html">Fine Art</a></li>
-      <li><a href="the-scribe.html">Scribe</a></li>
+      <li><a href="the-library.html">Library</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
   </nav>
 
-  <section class="hero">
-    <div class="hero-slide active">
-      <img src="images/collection-booth-display-01.jpg" alt="The Lore Faire booth — handcrafted jewelry arrayed across the display table" />
-    </div>
-    <div class="hero-slide">
-      <img src="images/collection-dragons-display-01.jpg" alt="A display of dragon pendants and charms" />
-    </div>
-    <div class="hero-slide">
-      <img src="images/collection-mixed-display-01.jpg" alt="A mixed display of pendants, rings, and curiosities" />
-    </div>
-    <div class="hero-slide">
-      <img src="images/collection-dragons-display-02.jpg" alt="Dragon pieces arranged across the display" />
-    </div>
-
+  <section class="hero" style="min-height: 54vh;">
     <div class="hero-overlay"></div>
-
     <div class="hero-content">
       <div class="hero-rule"></div>
       <h1>Lore Faire</h1>
@@ -370,33 +357,8 @@
       </div>
       <a href="gallery.html" class="badge">Enter the Gallery</a>
     </div>
-
-    <div class="slide-dots">
-      <button class="dot active" onclick="goToSlide(0)" aria-label="Slide 1"></button>
-      <button class="dot" onclick="goToSlide(1)" aria-label="Slide 2"></button>
-      <button class="dot" onclick="goToSlide(2)" aria-label="Slide 3"></button>
-      <button class="dot" onclick="goToSlide(3)" aria-label="Slide 4"></button>
-    </div>
   </section>
 
-  <section class="section" id="about">
-    <span class="section-label">The maker</span>
-    <p>
-      Somewhere between a <em>renaissance faire</em> and a candlelit library, you'll find the spirit of Lore Faire —
-      a maker's collection of handcrafted jewelry, wearable art, and curiosities born from
-      <em>D&amp;D campaigns, woodland wanderings,</em> and a deep love of the handmade.
-    </p>
-    <p>
-      Each piece carries its own story. Dragon claw pendants. Tarot charm bracelets. Celtic knotwork.
-      <em>Steampunk timepieces. Painted worlds. Miniature terrariums.</em>
-      No two quite the same — because that was never the point.
-    </p>
-    <div class="divider" style="margin-top: 2.5rem;">
-      <div class="divider-line"></div>
-      <div class="divider-gem"></div>
-      <div class="divider-line"></div>
-    </div>
-  </section>
 
   <section class="collections" id="collections">
     <span class="section-label">Wander the cases</span>
@@ -436,9 +398,9 @@
         <span class="collection-name">Victorian</span>
         <span class="collection-note">in the gallery</span>
       </a>
-      <a class="collection-item" href="the-scribe.html">
+      <a class="collection-item" href="the-library.html">
         <span class="collection-icon">✒︎</span>
-        <span class="collection-name">The Scribe</span>
+        <span class="collection-name">The Library</span>
         <span class="collection-note">available now</span>
       </a>
       <a class="collection-item" href="gallery.html#mystery">
@@ -451,22 +413,15 @@
 
   <section class="book-section" id="book">
     <div class="book-inner">
-      <img class="book-cover" src="book-cover.png" alt="The Adventure of the Colonial Victory — a coded telegram arrives at the telegraph office" />
+      <img class="book-cover" src="book-cover.png" alt="The Adventure of the Colonial Victory — a coded telegram arrives at the telegraph office" style="max-width: 160px;" />
       <div class="book-text">
-        <span class="section-label">From the scribe's desk</span>
+        <span class="section-label">Now on the shelf</span>
         <h2 class="book-title">The Adventure of the<br>Colonial Victory</h2>
         <p>
           A Doyle mystery wrapped in a Wodehouse comedy — and the origin story of
           <em>the most unflappable manservant in English literature.</em>
         </p>
-        <p>
-          When a coded telegram arrives at the Foreign Office — apparently requesting
-          that raisin biscuits be dispatched to a Brigadier in Suffolk — it is filed
-          under miscellany and promptly forgotten. It takes Sherlock Holmes approximately
-          four minutes to recognise it as the most significant communication to cross
-          his desk in a year.
-        </p>
-        <a class="book-link" href="the-scribe.html">Visit the Scribe's desk</a>
+        <a class="book-link" href="the-library.html">Visit the Library</a>
       </div>
     </div>
   </section>
@@ -509,34 +464,8 @@
 
   <footer>
     <p>&copy; 2025 Lore Faire &nbsp;&mdash;&nbsp; Acworth, Georgia &nbsp;&mdash;&nbsp;
-    <a href="gallery.html">Gallery</a> &nbsp;|&nbsp; <a href="the-scribe.html">The Scribe</a></p>
+    <a href="gallery.html">Gallery</a> &nbsp;|&nbsp; <a href="the-library.html">The Library</a></p>
   </footer>
 
-  <script>
-    const slides = document.querySelectorAll('.hero-slide');
-    const dots   = document.querySelectorAll('.dot');
-    let current  = 0;
-    let timer;
-    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-    function goToSlide(n) {
-      slides[current].classList.remove('active');
-      dots[current].classList.remove('active');
-      current = (n + slides.length) % slides.length;
-      slides[current].classList.add('active');
-      dots[current].classList.add('active');
-      resetTimer();
-    }
-
-    function nextSlide() { goToSlide(current + 1); }
-
-    function resetTimer() {
-      if (reduceMotion) return;          // no auto-advance if motion is reduced
-      clearInterval(timer);
-      timer = setInterval(nextSlide, 5500);
-    }
-
-    resetTimer();
-  </script>
-</body>
+  </body>
 </html>

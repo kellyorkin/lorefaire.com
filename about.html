@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About — Lore Faire</title>
+  <meta name="description" content="The maker behind Lore Faire — handcrafted jewelry, wearable art, and curiosities born from D&D campaigns, woodland wanderings, and a deep love of the handmade." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=EB+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'EB Garamond', Georgia, serif; background-color: #1a1612; color: #d4c9a8; min-height: 100vh; }
+    nav { display: flex; justify-content: space-between; align-items: center; padding: 1.25rem 3rem; background: #12100d; border-bottom: 1px solid #3a2e1e; position: sticky; top: 0; z-index: 100; }
+    .nav-logo { font-family: 'Cinzel', serif; font-size: 18px; font-weight: 600; letter-spacing: 0.12em; color: #e8d9b0; text-decoration: none; }
+    .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+    .nav-links a { font-family: 'Cinzel', serif; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: #9a8660; text-decoration: none; transition: color 0.2s ease; }
+    .nav-links a:hover, .nav-links a.current { color: #e8d9b0; }
+    .nav-links a.current { border-bottom: 1px solid #a07840; padding-bottom: 3px; }
+    /* ── Carousel (the booth, at home here) ── */
+    .hero { position: relative; width: 100%; min-height: 62vh; display: flex; align-items: flex-end; justify-content: center; overflow: hidden; background: #12100d; }
+    .hero-slide { position: absolute; inset: 0; opacity: 0; transition: opacity 1.8s ease-in-out; }
+    .hero-slide.active { opacity: 1; }
+    .hero-slide img { width: 100%; height: 100%; object-fit: cover; object-position: center; opacity: 0.6; }
+    .hero-overlay { position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(18,14,10,0.15) 0%, rgba(18,14,10,0.4) 70%, #1a1612 100%); z-index: 1; }
+    .hero-caption { position: relative; z-index: 2; text-align: center; padding: 0 2rem 3.5rem; }
+    .hero-caption span { font-family: 'Cinzel', serif; font-size: 10px; letter-spacing: 0.28em; text-transform: uppercase; color: #c8a060; }
+    .slide-dots { position: absolute; bottom: 1.4rem; left: 50%; transform: translateX(-50%); z-index: 3; display: flex; gap: 10px; }
+    .dot { width: 6px; height: 6px; background: rgba(160,120,64,0.35); transform: rotate(45deg); cursor: pointer; transition: background 0.3s ease; border: none; padding: 0; }
+    .dot.active { background: rgba(160,120,64,0.9); }
+    .dot:focus-visible { outline: 2px solid #c8a060; outline-offset: 3px; }
+    /* ── Maker ── */
+    .section { padding: 4.5rem 2rem; max-width: 720px; margin: 0 auto; text-align: center; }
+    .section-label { font-family: 'Cinzel', serif; font-size: 10px; letter-spacing: 0.28em; text-transform: uppercase; color: #a07840; margin-bottom: 1.5rem; display: block; }
+    h1 { font-family: 'Cinzel', serif; font-size: clamp(30px, 5vw, 48px); font-weight: 600; letter-spacing: 0.1em; color: #e8d9b0; line-height: 1.1; margin-bottom: 2rem; }
+    .section p { font-size: clamp(17px, 2vw, 20px); line-height: 1.85; color: #c4b48e; margin-bottom: 1.5rem; }
+    .section p em { color: #ddd0aa; font-style: italic; }
+    .divider { display: flex; align-items: center; gap: 14px; justify-content: center; margin: 2.5rem auto; }
+    .divider-line { width: 48px; height: 1px; background: #a07840; opacity: 0.55; }
+    .divider-gem { width: 7px; height: 7px; background: #a07840; transform: rotate(45deg); opacity: 0.85; }
+    .badge { display: inline-block; font-family: 'Cinzel', serif; font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase; color: #a07840; border: 1px solid rgba(160,120,64,0.6); padding: 11px 28px; text-decoration: none; transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease; }
+    .badge:hover { background: rgba(160,120,64,0.12); color: #c8a060; border-color: rgba(200,160,96,0.7); }
+    footer { padding: 2rem; border-top: 1px solid #2a2018; text-align: center; font-family: 'Cinzel', serif; font-size: 10px; letter-spacing: 0.15em; color: #4a4030; }
+    footer a { color: #5a5040; text-decoration: none; transition: color 0.2s ease; }
+    footer a:hover { color: #9a8660; }
+    @media (max-width: 600px) {
+      nav { padding: 1rem 1.5rem; }
+      .nav-links { gap: 1rem; }
+      .nav-links a { font-size: 9px; letter-spacing: 0.12em; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { transition: none !important; }
+      html { scroll-behavior: auto; }
+    }
+  </style>
+  <script src="segment-loader.js"></script>
+</head>
+<body>
+
+  <nav>
+    <a href="index.html" class="nav-logo">Lore Faire</a>
+    <ul class="nav-links">
+      <li><a href="about.html" class="current">About</a></li>
+      <li><a href="gallery.html">Gallery</a></li>
+      <li><a href="art.html">Fine Art</a></li>
+      <li><a href="the-library.html">Library</a></li>
+      <li><a href="index.html#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <section class="hero" aria-label="Scenes from the Lore Faire booth">
+    <div class="hero-slide active">
+      <img src="images/collection-booth-display-01.jpg" alt="The Lore Faire booth — handcrafted jewelry arrayed across the display table" />
+    </div>
+    <div class="hero-slide">
+      <img src="images/collection-dragons-display-01.jpg" alt="A display of dragon pendants and charms" />
+    </div>
+    <div class="hero-slide">
+      <img src="images/collection-mixed-display-01.jpg" alt="A mixed display of pendants, rings, and curiosities" />
+    </div>
+    <div class="hero-slide">
+      <img src="images/collection-dragons-display-02.jpg" alt="Dragon pieces arranged across the display" />
+    </div>
+    <div class="hero-overlay"></div>
+    <div class="hero-caption"><span>The booth, on any given faire day</span></div>
+    <div class="slide-dots">
+      <button class="dot active" onclick="goToSlide(0)" aria-label="Slide 1"></button>
+      <button class="dot" onclick="goToSlide(1)" aria-label="Slide 2"></button>
+      <button class="dot" onclick="goToSlide(2)" aria-label="Slide 3"></button>
+      <button class="dot" onclick="goToSlide(3)" aria-label="Slide 4"></button>
+    </div>
+  </section>
+
+  <section class="section" id="maker">
+    <span class="section-label">The maker</span>
+    <h1>About Lore Faire</h1>
+    <p>
+      Somewhere between a <em>renaissance faire</em> and a candlelit library, you'll find the spirit of Lore Faire —
+      a maker's collection of handcrafted jewelry, wearable art, and curiosities born from
+      <em>D&amp;D campaigns, woodland wanderings,</em> and a deep love of the handmade.
+    </p>
+    <p>
+      Each piece carries its own story. Dragon claw pendants. Tarot charm bracelets. Celtic knotwork.
+      <em>Steampunk timepieces. Painted worlds. Miniature terrariums.</em>
+      No two quite the same — because that was never the point.
+    </p>
+    <div class="divider">
+      <div class="divider-line"></div>
+      <div class="divider-gem"></div>
+      <div class="divider-line"></div>
+    </div>
+    <a href="gallery.html" class="badge">Wander the cases</a>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 Lore Faire &nbsp;&mdash;&nbsp; Acworth, Georgia &nbsp;&mdash;&nbsp;
+    <a href="gallery.html">Gallery</a> &nbsp;|&nbsp; <a href="index.html#contact">Contact</a></p>
+    <p style="margin-top: 0.8rem;">Site by the same hands &nbsp;&mdash;&nbsp; <a href="https://korkworks.com">korkworks.com</a></p>
+  </footer>
+
+  <script>
+    const slides = document.querySelectorAll('.hero-slide');
+    const dots   = document.querySelectorAll('.dot');
+    let current  = 0;
+    let timer;
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    function goToSlide(n) {
+      slides[current].classList.remove('active');
+      dots[current].classList.remove('active');
+      current = (n + slides.length) % slides.length;
+      slides[current].classList.add('active');
+      dots[current].classList.add('active');
+      resetTimer();
+    }
+    function nextSlide() { goToSlide(current + 1); }
+    function resetTimer() {
+      if (reduceMotion) return;
+      clearInterval(timer);
+      timer = setInterval(nextSlide, 5500);
+    }
+    resetTimer();
+  </script>
+</body>
+</html>
