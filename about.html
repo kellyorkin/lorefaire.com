@@ -11,19 +11,19 @@
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
-    body { font-family: 'EB Garamond', Georgia, serif; background-color: #1a1612; color: #d4c9a8; min-height: 100vh; }
-    nav { display: flex; justify-content: space-between; align-items: center; padding: 1.25rem 3rem; background: #12100d; border-bottom: 1px solid #3a2e1e; position: sticky; top: 0; z-index: 100; }
+    body { font-family: 'EB Garamond', Georgia, serif; background-color: #151a14; color: #d4c9a8; min-height: 100vh; }
+    nav { display: flex; justify-content: space-between; align-items: center; padding: 1.25rem 3rem; background: #0f140f; border-bottom: 1px solid #2f3a28; position: sticky; top: 0; z-index: 100; }
     .nav-logo { font-family: 'Cinzel', serif; font-size: 18px; font-weight: 600; letter-spacing: 0.12em; color: #e8d9b0; text-decoration: none; }
     .nav-links { display: flex; gap: 2.5rem; list-style: none; }
     .nav-links a { font-family: 'Cinzel', serif; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: #9a8660; text-decoration: none; transition: color 0.2s ease; }
     .nav-links a:hover, .nav-links a.current { color: #e8d9b0; }
     .nav-links a.current { border-bottom: 1px solid #a07840; padding-bottom: 3px; }
     /* ── Carousel (the booth, at home here) ── */
-    .hero { position: relative; width: 100%; min-height: 62vh; display: flex; align-items: flex-end; justify-content: center; overflow: hidden; background: #12100d; }
+    .hero { position: relative; width: 100%; min-height: 62vh; display: flex; align-items: flex-end; justify-content: center; overflow: hidden; background: #0f140f; }
     .hero-slide { position: absolute; inset: 0; opacity: 0; transition: opacity 1.8s ease-in-out; }
     .hero-slide.active { opacity: 1; }
     .hero-slide img { width: 100%; height: 100%; object-fit: cover; object-position: center; opacity: 0.6; }
-    .hero-overlay { position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(18,14,10,0.15) 0%, rgba(18,14,10,0.4) 70%, #1a1612 100%); z-index: 1; }
+    .hero-overlay { position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(15,20,14,0.15) 0%, rgba(15,20,14,0.4) 70%, #151a14 100%); z-index: 1; }
     .hero-caption { position: relative; z-index: 2; text-align: center; padding: 0 2rem 3.5rem; }
     .hero-caption span { font-family: 'Cinzel', serif; font-size: 10px; letter-spacing: 0.28em; text-transform: uppercase; color: #c8a060; }
     .slide-dots { position: absolute; bottom: 1.4rem; left: 50%; transform: translateX(-50%); z-index: 3; display: flex; gap: 10px; }
@@ -38,11 +38,11 @@
     .section p em { color: #ddd0aa; font-style: italic; }
     .divider { display: flex; align-items: center; gap: 14px; justify-content: center; margin: 2.5rem auto; }
     .divider-line { width: 48px; height: 1px; background: #a07840; opacity: 0.55; }
-    .divider-gem { width: 7px; height: 7px; background: #a07840; transform: rotate(45deg); opacity: 0.85; }
+    .divider-gem { width: 16px; height: 16px; background: url("data:image/svg+xml,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20viewBox%3D'0%200%20100%20100'%3E%3Cg%20fill%3D'none'%20stroke%3D'%23a07840'%20stroke-width%3D'5.5'%20stroke-linecap%3D'round'%3E%3Cpath%20d%3D'M50%2050%20C36%2034%2036%2014%2050%208%20C64%2014%2064%2034%2050%2050Z'%2F%3E%3Cpath%20d%3D'M50%2050%20C36%2034%2036%2014%2050%208%20C64%2014%2064%2034%2050%2050Z'%20transform%3D'rotate(120%2050%2050)'%2F%3E%3Cpath%20d%3D'M50%2050%20C36%2034%2036%2014%2050%208%20C64%2014%2064%2034%2050%2050Z'%20transform%3D'rotate(240%2050%2050)'%2F%3E%3Ccircle%20cx%3D'50'%20cy%3D'50'%20r%3D'27'%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E") center / contain no-repeat; opacity: 0.9; }
     .badge { display: inline-block; font-family: 'Cinzel', serif; font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase; color: #a07840; border: 1px solid rgba(160,120,64,0.6); padding: 11px 28px; text-decoration: none; transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease; }
     .badge:hover { background: rgba(160,120,64,0.12); color: #c8a060; border-color: rgba(200,160,96,0.7); }
-    footer { padding: 2rem; border-top: 1px solid #2a2018; text-align: center; font-family: 'Cinzel', serif; font-size: 10px; letter-spacing: 0.15em; color: #4a4030; }
-    footer a { color: #5a5040; text-decoration: none; transition: color 0.2s ease; }
+    footer { padding: 2rem; border-top: 1px solid #222a1e; text-align: center; font-family: 'Cinzel', serif; font-size: 10px; letter-spacing: 0.15em; color: #424a38; }
+    footer a { color: #525a48; text-decoration: none; transition: color 0.2s ease; }
     footer a:hover { color: #9a8660; }
     @media (max-width: 600px) {
       nav { padding: 1rem 1.5rem; }

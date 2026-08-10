@@ -14,17 +14,17 @@
        gallery reads as the same site.
        ─────────────────────────────────────────────────────────── */
     :root {
-      --bg:        #1a1612;
-      --bg-dark:   #12100d;
-      --panel:     #211c15;
-      --line:      #3a2e1e;
-      --line-soft: #2a2018;
+      --bg:        #151a14;
+      --bg-dark:   #0f140f;
+      --panel:     #1c231a;
+      --line:      #2f3a28;
+      --line-soft: #222a1e;
       --gold:      #a07840;
       --gold-lit:  #c8a060;
       --cream:     #e8d9b0;
       --parch:     #c4b48e;
       --parch-dim: #9a8660;
-      --faint:     #5a5040;
+      --faint:     #525a48;
 
       /* Default image fit for every tile. Change to `cover` if your
          photos are rectangular jpgs and you'd rather fill the tile
@@ -118,7 +118,7 @@
       margin: 2rem auto 0;
     }
     .divider-line { width: 48px; height: 1px; background: var(--gold); opacity: 0.55; }
-    .divider-gem  { width: 7px; height: 7px; background: var(--gold); transform: rotate(45deg); opacity: 0.85; }
+    .divider-gem  { width: 16px; height: 16px; background: url("data:image/svg+xml,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20viewBox%3D'0%200%20100%20100'%3E%3Cg%20fill%3D'none'%20stroke%3D'%23a07840'%20stroke-width%3D'5.5'%20stroke-linecap%3D'round'%3E%3Cpath%20d%3D'M50%2050%20C36%2034%2036%2014%2050%208%20C64%2014%2064%2034%2050%2050Z'%2F%3E%3Cpath%20d%3D'M50%2050%20C36%2034%2036%2014%2050%208%20C64%2014%2064%2034%2050%2050Z'%20transform%3D'rotate(120%2050%2050)'%2F%3E%3Cpath%20d%3D'M50%2050%20C36%2034%2036%2014%2050%208%20C64%2014%2064%2034%2050%2050Z'%20transform%3D'rotate(240%2050%2050)'%2F%3E%3Ccircle%20cx%3D'50'%20cy%3D'50'%20r%3D'27'%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E") center / contain no-repeat; opacity: 0.9; }
 
     /* ── Filter chips ── */
     .chips { display: flex; flex-wrap: wrap; gap: 0.6rem; justify-content: center; max-width: 900px; margin: 2.5rem auto 0; padding: 0 2rem; }
@@ -160,7 +160,7 @@
       position: relative;
       aspect-ratio: 4 / 5;
       border: 1px solid var(--line);
-      background: radial-gradient(ellipse 72% 62% at 50% 40%, #2c2419 0%, #15110c 74%);
+      background: radial-gradient(ellipse 72% 62% at 50% 40%, #26301f 0%, #111610 74%);
       overflow: hidden;
       transition: border-color 0.25s ease, transform 0.3s ease;
     }
@@ -176,7 +176,7 @@
       content: "";
       position: absolute;
       inset: 0;
-      box-shadow: inset 0 0 70px 16px rgba(18,14,10,0.62);
+      box-shadow: inset 0 0 70px 16px rgba(15,20,14,0.62);
       pointer-events: none;
     }
 
@@ -250,7 +250,7 @@
       justify-content: center;
       flex-direction: column;
       gap: 1.5rem;
-      background: rgba(10, 8, 6, 0.93);
+      background: rgba(8, 10, 7, 0.93);
       -webkit-backdrop-filter: blur(4px);
       backdrop-filter: blur(4px);
       padding: 3rem 1.5rem;
