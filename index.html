@@ -1,13 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <script>
-  !function(){var i="analytics",analytics=window[i]=window[i]||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group","track","ready","alias","debug","page","screen","once","off","on","addSourceMiddleware","addIntegrationMiddleware","setAnonymousId","addDestinationMiddleware","register"];analytics.factory=function(e){return function(){if(window[i].initialized)return window[i][e].apply(window[i],arguments);var n=Array.prototype.slice.call(arguments);if(["track","screen","alias","group","page","identify"].indexOf(e)>-1){var c=document.querySelector("link[rel='canonical']");n.push({__t:"bpc",c:c&&c.getAttribute("href")||void 0,p:location.pathname,u:location.href,s:location.search,t:document.title,r:document.referrer})}n.unshift(e);analytics.push(n);return analytics}};for(var n=0;n<analytics.methods.length;n++){var key=analytics.methods[n];analytics[key]=analytics.factory(key)}analytics.load=function(key,n){var t=document.createElement("script");t.type="text/javascript";t.async=!0;t.setAttribute("data-global-segment-analytics-key",i);t.src="https://cdn.segment.com/analytics.js/v1/" + key + "/analytics.min.js";var r=document.getElementsByTagName("script")[0];r.parentNode.insertBefore(t,r);analytics._loadOptions=n};analytics._writeKey="N0aRRFCgTdqKtbbH2yoKF6dHCHEaLISQ";;analytics.SNIPPET_VERSION="5.2.0";
-  analytics.load("N0aRRFCgTdqKtbbH2yoKF6dHCHEaLISQ");
-  analytics.page();
-  }}();
-</script>
-  <meta charset="UTF-8" />
+    <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Lore Faire — Curiosities for the Wandering Soul</title>
   <meta name="description" content="A maker's collection of handcrafted jewelry, wearable art, and curiosities born from D&D campaigns, woodland wanderings, and a deep love of the handmade." />
@@ -82,12 +76,7 @@
       height: 100%;
       object-fit: cover;
       object-position: center;
-      opacity: 0.38;
-      /* Soft blur + slight scale: turns grainy/low-res hero shots into
-         atmospheric candlelit haze instead of visible noise. The scale
-         keeps the blur from showing soft edges at the frame. */
-      filter: blur(2px);
-      transform: scale(1.08);
+      opacity: 0.5;
     }
     .hero-overlay {
       position: absolute;
@@ -205,7 +194,7 @@
       text-decoration: none;
     }
     .collection-item:hover { background: #211c15; }
-    .collection-icon { font-size: 22px; line-height: 1; }
+    .collection-icon { font-size: 20px; line-height: 1; color: #a07840; }
     .collection-name {
       font-family: 'Cinzel', serif;
       font-size: 10px;
@@ -348,6 +337,7 @@
     <ul class="nav-links">
       <li><a href="#about">About</a></li>
       <li><a href="gallery.html">Gallery</a></li>
+      <li><a href="art.html">Fine Art</a></li>
       <li><a href="the-scribe.html">Scribe</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
@@ -411,48 +401,48 @@
   <section class="collections" id="collections">
     <span class="section-label">Wander the cases</span>
     <div class="collections-grid">
-      <a class="collection-item" href="gallery.html">
-        <span class="collection-icon">⚔️</span>
+      <a class="collection-item" href="gallery.html#dnd">
+        <span class="collection-icon">⚔︎</span>
         <span class="collection-name">D&amp;D &amp; Fantasy</span>
         <span class="collection-note">in the gallery</span>
       </a>
-      <a class="collection-item" href="gallery.html">
-        <span class="collection-icon">🐉</span>
+      <a class="collection-item" href="gallery.html#dragons">
+        <span class="collection-icon">✶</span>
         <span class="collection-name">Dragons</span>
         <span class="collection-note">in the gallery</span>
       </a>
-      <a class="collection-item" href="gallery.html">
-        <span class="collection-icon">⚙️</span>
+      <a class="collection-item" href="gallery.html#steampunk">
+        <span class="collection-icon">⚙︎</span>
         <span class="collection-name">Steampunk</span>
         <span class="collection-note">in the gallery</span>
       </a>
-      <a class="collection-item" href="gallery.html">
-        <span class="collection-icon">🌿</span>
+      <a class="collection-item" href="gallery.html#renfaire">
+        <span class="collection-icon">❧</span>
         <span class="collection-name">Ren Faire</span>
         <span class="collection-note">in the gallery</span>
       </a>
-      <a class="collection-item" href="fine-art.html">
-        <span class="collection-icon">🎨</span>
+      <a class="collection-item" href="art.html">
+        <span class="collection-icon">✧</span>
         <span class="collection-name">Fine Art</span>
         <span class="collection-note">enter the studio</span>
       </a>
-      <a class="collection-item" href="gallery.html">
-        <span class="collection-icon">🌱</span>
+      <div class="collection-item">
+        <span class="collection-icon">✿</span>
         <span class="collection-name">Terrariums</span>
         <span class="collection-note">coming soon</span>
-      </a>
-      <a class="collection-item" href="gallery.html">
-        <span class="collection-icon">🎩</span>
+      </div>
+      <a class="collection-item" href="gallery.html#victorian">
+        <span class="collection-icon">❦</span>
         <span class="collection-name">Victorian</span>
         <span class="collection-note">in the gallery</span>
       </a>
       <a class="collection-item" href="the-scribe.html">
-        <span class="collection-icon">📖</span>
+        <span class="collection-icon">✒︎</span>
         <span class="collection-name">The Scribe</span>
         <span class="collection-note">available now</span>
       </a>
-      <a class="collection-item" href="gallery.html">
-        <span class="collection-icon">🔮</span>
+      <a class="collection-item" href="gallery.html#mystery">
+        <span class="collection-icon">☽</span>
         <span class="collection-name">Mystery</span>
         <span class="collection-note">what lurks within…</span>
       </a>
@@ -461,29 +451,20 @@
 
   <section class="book-section" id="book">
     <div class="book-inner">
-      <img class="book-cover" src="library.png" alt="A young man in a pinstripe suit leaning against a vintage Rolls-Royce" />
+      <img class="book-cover" src="book-cover.png" alt="The Adventure of the Colonial Victory — a coded telegram arrives at the telegraph office" />
       <div class="book-text">
         <span class="section-label">From the scribe's desk</span>
-        <h2 class="book-title">The Braganza Connection</h2>
+        <h2 class="book-title">The Adventure of the<br>Colonial Victory</h2>
         <p>
-          Twenty-three years have passed since that improbable week in Suffolk.
-          The lanes are the same. The houses are the same.
-          <em>The people are not.</em>
+          A Doyle mystery wrapped in a Wodehouse comedy — and the origin story of
+          <em>the most unflappable manservant in English literature.</em>
         </p>
         <p>
-          Two boys have come home to Wooster Hall for the summer — each carrying
-          something they cannot name and will not share. Dahlia has decided that
-          the Brigadier's library and the local lore are better than the nothing
-          they've been doing. She is not wrong. She is also not prepared.
-        </p>
-        <p>
-          There is a diamond. There is a mystery. There is an anchor who says very little
-          and notices everything — and has, once again, quietly had the situation in hand
-          the entire time.
-        </p>
-        <p>
-          <em>They've been more ghosts of the town than the Black Shuck.</em>
-          That is about to change.
+          When a coded telegram arrives at the Foreign Office — apparently requesting
+          that raisin biscuits be dispatched to a Brigadier in Suffolk — it is filed
+          under miscellany and promptly forgotten. It takes Sherlock Holmes approximately
+          four minutes to recognise it as the most significant communication to cross
+          his desk in a year.
         </p>
         <a class="book-link" href="the-scribe.html">Visit the Scribe's desk</a>
       </div>
@@ -528,7 +509,7 @@
 
   <footer>
     <p>&copy; 2025 Lore Faire &nbsp;&mdash;&nbsp; Acworth, Georgia &nbsp;&mdash;&nbsp;
-    <a href="#">Legal Notice</a> &nbsp;|&nbsp; <a href="#">Privacy Policy</a></p>
+    <a href="gallery.html">Gallery</a> &nbsp;|&nbsp; <a href="the-scribe.html">The Scribe</a></p>
   </footer>
 
   <script>

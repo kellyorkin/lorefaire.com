@@ -20,7 +20,7 @@
   analytics.SNIPPET_VERSION = "5.2.0";
 
   /* ─────────── PASTE YOUR SEGMENT WRITE KEY HERE ─────────── */
-  var WRITE_KEY = "LORE_FAIRE_WRITE_KEY";
+  var WRITE_KEY = "N0aRRFCgTdqKtbbH2yoKF6dHCHEaLISQ";
 
   /* Inert guard: do nothing until the placeholder is replaced with a real key
      (prevents a failed request to a bogus key while the branch is unconfigured). */

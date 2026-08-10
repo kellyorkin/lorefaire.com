@@ -1,13 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <script>
-  !function(){var i="analytics",analytics=window[i]=window[i]||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group","track","ready","alias","debug","page","screen","once","off","on","addSourceMiddleware","addIntegrationMiddleware","setAnonymousId","addDestinationMiddleware","register"];analytics.factory=function(e){return function(){if(window[i].initialized)return window[i][e].apply(window[i],arguments);var n=Array.prototype.slice.call(arguments);if(["track","screen","alias","group","page","identify"].indexOf(e)>-1){var c=document.querySelector("link[rel='canonical']");n.push({__t:"bpc",c:c&&c.getAttribute("href")||void 0,p:location.pathname,u:location.href,s:location.search,t:document.title,r:document.referrer})}n.unshift(e);analytics.push(n);return analytics}};for(var n=0;n<analytics.methods.length;n++){var key=analytics.methods[n];analytics[key]=analytics.factory(key)}analytics.load=function(key,n){var t=document.createElement("script");t.type="text/javascript";t.async=!0;t.setAttribute("data-global-segment-analytics-key",i);t.src="https://cdn.segment.com/analytics.js/v1/" + key + "/analytics.min.js";var r=document.getElementsByTagName("script")[0];r.parentNode.insertBefore(t,r);analytics._loadOptions=n};analytics._writeKey="N0aRRFCgTdqKtbbH2yoKF6dHCHEaLISQ";;analytics.SNIPPET_VERSION="5.2.0";
-  analytics.load("N0aRRFCgTdqKtbbH2yoKF6dHCHEaLISQ");
-  analytics.page();
-  }}();
-</script>
-  <meta charset="UTF-8" />
+    <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Lore Faire — The Gallery</title>
   <meta name="description" content="The Lore Faire gallery — handcrafted, one-of-a-kind jewelry and curiosities, each made once and only once." />
@@ -36,7 +30,7 @@
          photos are rectangular jpgs and you'd rather fill the tile
          edge-to-edge (it will crop). `contain` (the default) shows
          the whole piece — ideal for rembg transparent PNGs. */
-      --fit: contain;
+      --fit: cover;
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -126,6 +120,16 @@
     .divider-line { width: 48px; height: 1px; background: var(--gold); opacity: 0.55; }
     .divider-gem  { width: 7px; height: 7px; background: var(--gold); transform: rotate(45deg); opacity: 0.85; }
 
+    /* ── Filter chips ── */
+    .chips { display: flex; flex-wrap: wrap; gap: 0.6rem; justify-content: center; max-width: 900px; margin: 2.5rem auto 0; padding: 0 2rem; }
+    .chip {
+      font-family: 'Cinzel', serif; font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--parch-dim); background: none; border: 1px solid var(--line); padding: 8px 16px;
+      cursor: pointer; transition: color 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+    }
+    .chip:hover { color: var(--cream); border-color: var(--gold); }
+    .chip.active { color: var(--gold-lit); border-color: var(--gold); background: rgba(160,120,64,0.08); }
+
     /* ── Gallery grid ── */
     .grid {
       display: grid;
@@ -164,8 +168,6 @@
       width: 100%;
       height: 100%;
       object-fit: var(--fit);
-      padding: 12%;
-      filter: drop-shadow(0 8px 16px rgba(0,0,0,0.55));
       transition: transform 0.4s ease;
     }
     /* Uniform edge-vignette over every image — unifies bright/busy photos
@@ -349,6 +351,7 @@
     <ul class="nav-links">
       <li><a href="index.html#about">About</a></li>
       <li><a href="gallery.html" class="current">Gallery</a></li>
+      <li><a href="art.html">Fine Art</a></li>
       <li><a href="the-scribe.html">Scribe</a></li>
       <li><a href="index.html#contact">Contact</a></li>
     </ul>
@@ -364,6 +367,16 @@
       <div class="divider-line"></div>
     </div>
   </header>
+
+  <nav class="chips" aria-label="Filter by collection">
+    <button class="chip active" data-cat="all">All</button>
+    <button class="chip" data-cat="dnd">D&amp;D &amp; Fantasy</button>
+    <button class="chip" data-cat="dragons">Dragons</button>
+    <button class="chip" data-cat="steampunk">Steampunk</button>
+    <button class="chip" data-cat="renfaire">Ren Faire</button>
+    <button class="chip" data-cat="victorian">Victorian</button>
+    <button class="chip" data-cat="mystery">Mystery</button>
+  </nav>
 
   <main>
     <section class="grid" id="grid" aria-label="Gallery of handcrafted pieces"></section>
@@ -460,6 +473,16 @@
 
     /* ── Nothing below here needs editing ── */
 
+    function categorize(f) {
+      if (/dragon/.test(f)) return "dragons";
+      if (/steampunk/.test(f)) return "steampunk";
+      if (/tarot|halloween|pentagram/.test(f)) return "mystery";
+      if (/celtic/.test(f)) return "renfaire";
+      if (/cameo|filigree|scrollwork|cloisonne|victorian/.test(f)) return "victorian";
+      if (/dice|dnd|pokemon|mythos|crystal/.test(f)) return "dnd";
+      return "other";
+    }
+
     function prettify(file) {
       return file
         .replace(/^.*\//, "")          // strip any path
@@ -476,6 +499,7 @@
       o.src   = (/^(https?:)?\/\//.test(f) || f.includes("/")) ? f : "images/" + f;
       o.title = o.title || prettify(f);
       o.note  = o.note  || "one of a kind";
+      o.cat   = o.cat   || categorize(o.file || "");
       return o;
     }
 
@@ -490,6 +514,7 @@
         const tile = document.createElement("button");
         tile.className = "tile";
         tile.setAttribute("aria-label", "View " + it.title);
+        tile.dataset.cat = it.cat;
 
         const frame = document.createElement("div");
         frame.className = "frame";
@@ -520,6 +545,21 @@
     }
 
     /* ── Lightbox ── */
+    /* ── Category filter (chips + #hash deep links from the homepage cases) ── */
+    const chips = document.querySelectorAll(".chip");
+    function applyFilter(cat) {
+      chips.forEach(c => c.classList.toggle("active", c.dataset.cat === cat));
+      document.querySelectorAll(".tile").forEach(t => {
+        t.style.display = (cat === "all" || t.dataset.cat === cat) ? "" : "none";
+      });
+    }
+    chips.forEach(c => c.addEventListener("click", () => {
+      applyFilter(c.dataset.cat);
+      history.replaceState(null, "", c.dataset.cat === "all" ? location.pathname : "#" + c.dataset.cat);
+    }));
+    const initialCat = (location.hash || "").slice(1);
+    applyFilter(["dnd","dragons","steampunk","renfaire","victorian","mystery"].includes(initialCat) ? initialCat : "all");
+
     const lb      = document.getElementById("lightbox");
     const lbImg   = document.getElementById("lbImg");
     const lbCap   = document.getElementById("lbCap");
