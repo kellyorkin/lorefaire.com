@@ -120,6 +120,22 @@
     .divider-line { width: 48px; height: 1px; background: var(--gold); opacity: 0.55; }
     .divider-gem  { width: 16px; height: 16px; background: url("data:image/svg+xml,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20viewBox%3D'0%200%20100%20100'%3E%3Cg%20fill%3D'none'%20stroke%3D'%23a07840'%20stroke-width%3D'5.5'%20stroke-linecap%3D'round'%3E%3Cpath%20d%3D'M50%2050%20C36%2034%2036%2014%2050%208%20C64%2014%2064%2034%2050%2050Z'%2F%3E%3Cpath%20d%3D'M50%2050%20C36%2034%2036%2014%2050%208%20C64%2014%2064%2034%2050%2050Z'%20transform%3D'rotate(120%2050%2050)'%2F%3E%3Cpath%20d%3D'M50%2050%20C36%2034%2036%2014%2050%208%20C64%2014%2064%2034%2050%2050Z'%20transform%3D'rotate(240%2050%2050)'%2F%3E%3Ccircle%20cx%3D'50'%20cy%3D'50'%20r%3D'27'%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E") center / contain no-repeat; opacity: 0.9; }
 
+    /* ── Search ── */
+    .findbar { display: flex; align-items: center; gap: 1rem; justify-content: center; margin: 1.25rem auto 0; padding: 0 2rem; }
+    #search {
+      font-family: 'EB Garamond', serif; font-size: 14px; font-style: italic;
+      color: var(--cream); background: transparent; border: none;
+      border-bottom: 1px solid var(--line); padding: 6px 4px; width: 240px;
+      outline: none; transition: border-color 0.2s ease;
+    }
+    #search::placeholder { color: var(--faint); font-style: italic; }
+    #search:focus { border-bottom-color: var(--gold); }
+    #search::-webkit-search-cancel-button { filter: invert(0.6); cursor: pointer; }
+    .findcount {
+      font-family: 'Cinzel', serif; font-size: 9px; letter-spacing: 0.2em;
+      text-transform: uppercase; color: var(--faint); white-space: nowrap;
+    }
+
     /* ── Filter chips ── */
     .chips { display: flex; flex-wrap: wrap; gap: 0.6rem; justify-content: center; max-width: 900px; margin: 2.5rem auto 0; padding: 0 2rem; }
     .chip {
@@ -351,7 +367,7 @@
     <ul class="nav-links">
       <li><a href="about.html">About</a></li>
       <li><a href="gallery.html" class="current">Gallery</a></li>
-      <li><a href="art.html">Fine Art</a></li>
+      <li><a href="art.html">Atelier</a></li>
       <li><a href="the-library.html">Library</a></li>
       <li><a href="index.html#contact">Contact</a></li>
     </ul>
@@ -378,6 +394,11 @@
     <button class="chip" data-cat="terrariums">Conservatory</button>
     <button class="chip" data-cat="mystery">Curio Cabinet</button>
   </nav>
+
+  <div class="findbar">
+    <input id="search" type="search" placeholder="Search the cases…" aria-label="Search pieces by name or description" autocomplete="off" />
+    <span class="findcount" id="findcount"></span>
+  </div>
 
   <main>
     <section class="grid" id="grid" aria-label="Gallery of handcrafted pieces"></section>
@@ -651,6 +672,7 @@
         tile.className = "tile";
         tile.setAttribute("aria-label", "View " + it.title);
         tile.dataset.cat = it.cat;
+        tile.dataset.q   = (it.title + " " + it.note).toLowerCase();
 
         const frame = document.createElement("div");
         frame.className = "frame";
@@ -682,19 +704,40 @@
 
     /* ── Lightbox ── */
     /* ── Category filter (chips + #hash deep links from the homepage cases) ── */
-    const chips = document.querySelectorAll(".chip");
-    function applyFilter(cat) {
-      chips.forEach(c => c.classList.toggle("active", c.dataset.cat === cat));
+    const chips  = document.querySelectorAll(".chip");
+    const search = document.getElementById("search");
+    const count  = document.getElementById("findcount");
+    const CASES  = ["dnd","dragons","steampunk","renfaire","victorian","mystery","terrariums"];
+    let activeCat = "all";
+
+    function apply() {
+      const q = (search.value || "").trim().toLowerCase();
+      chips.forEach(c => c.classList.toggle("active", c.dataset.cat === activeCat));
+      let shown = 0, total = 0;
       document.querySelectorAll(".tile").forEach(t => {
-        t.style.display = (cat === "all" || t.dataset.cat === cat) ? "" : "none";
+        total++;
+        const okCat = activeCat === "all" || t.dataset.cat === activeCat;
+        const okQ   = !q || (t.dataset.q || "").includes(q);
+        const vis   = okCat && okQ;
+        t.style.display = vis ? "" : "none";
+        if (vis) shown++;
       });
+      count.textContent = shown === total ? total + " pieces" : shown + " / " + total;
+      empty.hidden = shown !== 0;
+      if (shown === 0) empty.textContent = "Nothing in the cases matches that.";
     }
+
     chips.forEach(c => c.addEventListener("click", () => {
-      applyFilter(c.dataset.cat);
-      history.replaceState(null, "", c.dataset.cat === "all" ? location.pathname : "#" + c.dataset.cat);
+      activeCat = c.dataset.cat;
+      apply();
+      history.replaceState(null, "", activeCat === "all" ? location.pathname : "#" + activeCat);
     }));
+    search.addEventListener("input", apply);
+    search.addEventListener("keydown", e => { if (e.key === "Escape") { search.value = ""; apply(); } });
+
     const initialCat = (location.hash || "").slice(1);
-    applyFilter(["dnd","dragons","steampunk","renfaire","victorian","mystery","terrariums"].includes(initialCat) ? initialCat : "all");
+    activeCat = CASES.includes(initialCat) ? initialCat : "all";
+    apply();
 
     const lb      = document.getElementById("lightbox");
     const lbImg   = document.getElementById("lbImg");
