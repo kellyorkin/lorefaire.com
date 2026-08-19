@@ -370,12 +370,13 @@
 
   <nav class="chips" aria-label="Filter by collection">
     <button class="chip active" data-cat="all">All</button>
-    <button class="chip" data-cat="dnd">D&amp;D &amp; Fantasy</button>
-    <button class="chip" data-cat="dragons">Dragons</button>
-    <button class="chip" data-cat="steampunk">Steampunk</button>
-    <button class="chip" data-cat="renfaire">Ren Faire</button>
-    <button class="chip" data-cat="victorian">Victorian</button>
-    <button class="chip" data-cat="mystery">Mystery</button>
+    <button class="chip" data-cat="dnd">Fantasy Treasury</button>
+    <button class="chip" data-cat="dragons">Dragon's Hoard</button>
+    <button class="chip" data-cat="steampunk">Steampunk Salon</button>
+    <button class="chip" data-cat="renfaire">Faire Grounds</button>
+    <button class="chip" data-cat="victorian">Victorian Parlour</button>
+    <button class="chip" data-cat="terrariums">Conservatory</button>
+    <button class="chip" data-cat="mystery">Curio Cabinet</button>
   </nav>
 
   <main>
@@ -418,62 +419,196 @@
        Mix and match freely. Order here = order on the page.
        ═══════════════════════════════════════════════════════════════ */
     const PIECES = [
-      // Titles/notes are a FIRST PASS drafted from filenames, not the photos —
-      // skim and fix anything that doesn't match what's actually in frame
-      // (notes especially, where I guessed materials/colors from the name).
+      // Shot 2026-08-18. Titles are a first pass from the photos —
+      // corrections live in photos-gallery/manifest.csv and can be re-run.
 
-      // Framed art — keep if these are pieces you sell; move to hero if they're staging shots
-      { file: "collection-dice-shadowbox-01.jpg", title: "Dice Shadowbox",     note: "framed dice, D&D" },
-      { file: "collection-dice-shadowbox-02.jpg", title: "Dice Shadowbox II",  note: "framed dice, D&D" },
-      { file: "collection-dnd-art-frame-01.jpg",  title: "Adventurer's Frame", note: "framed D&D art" },
+      // ── dnd ──
+      { file: "dnd-blue-bead-plaque-01.jpg", title: "Blue Bead Plaque", note: "one of a kind" },
+      { file: "dnd-blue-cameo-cat-01.jpg", title: "Blue Cameo Cat", note: "one of a kind" },
+      { file: "dnd-blue-die-dragon-01.jpg", title: "Blue Die Dragon", note: "one of a kind" },
+      { file: "dnd-butterfly-fairy-charm-01.jpg", title: "Butterfly Fairy Charm", note: "one of a kind" },
+      { file: "dnd-butterfly-fairy-cluster-01.jpg", title: "Butterfly Fairy Cluster", note: "one of a kind" },
+      { file: "dnd-cabochon-snowy-owl-01.jpg", title: "Cabochon Snowy Owl", note: "one of a kind" },
+      { file: "dnd-charm-cluster-01.jpg", title: "Charm Cluster", note: "one of a kind" },
+      { file: "dnd-crescent-moon-blue-bead-01.jpg", title: "Crescent Moon Blue Bead", note: "one of a kind" },
+      { file: "dnd-crescent-moon-leaf-01.jpg", title: "Crescent Moon Leaf", note: "one of a kind" },
+      { file: "dnd-crystal-amazonite-01.jpg", title: "Crystal Amazonite", note: "one of a kind" },
+      { file: "dnd-crystal-point-charms-01.jpg", title: "Crystal Point Charms", note: "one of a kind" },
+      { file: "dnd-crystal-sphere-clear-01.jpg", title: "Crystal Sphere Clear", note: "one of a kind" },
+      { file: "dnd-crystal-sphere-silver-01.jpg", title: "Crystal Sphere Silver", note: "one of a kind" },
+      { file: "dnd-d12-red-bezel-roses-01.jpg", title: "d12 Red Bezel Roses", note: "one of a kind" },
+      { file: "dnd-d12-wood-roses-wing-01.jpg", title: "d12 Wood Roses Wing", note: "one of a kind" },
+      { file: "dnd-d20-beads-pendant-01.jpg", title: "d20 Beads Pendant", note: "one of a kind" },
+      { file: "dnd-d20-green-dragon-charm-01.jpg", title: "d20 Green Dragon Charm", note: "one of a kind" },
+      { file: "dnd-d20-pink-wirewrap-01.jpg", title: "d20 Pink Wirewrap", note: "one of a kind" },
+      { file: "dnd-d20-purple-flower-bezel-01.jpg", title: "d20 Purple Flower Bezel", note: "one of a kind" },
+      { file: "dnd-d20-teal-ornate-bezel-01.jpg", title: "d20 Teal Ornate Bezel", note: "one of a kind" },
+      { file: "dnd-d20-teal-wings-01.jpg", title: "d20 Teal Wings", note: "one of a kind" },
+      { file: "dnd-die-gears-charms-01.jpg", title: "Die Gears Charms", note: "one of a kind" },
+      { file: "dnd-die-opal-spike-01.jpg", title: "Die Opal Spike", note: "one of a kind" },
+      { file: "dnd-die-pink-clover-frame-01.jpg", title: "Die Pink Clover Frame", note: "one of a kind" },
+      { file: "dnd-die-purple-butterfly-01.jpg", title: "Die Purple Butterfly", note: "one of a kind" },
+      { file: "dnd-dragonfly-opal-point-01.jpg", title: "Dragonfly Opal Point", note: "one of a kind" },
+      { file: "dnd-howlite-point-white-01.jpg", title: "Howlite Point White", note: "one of a kind" },
+      { file: "dnd-opal-point-skull-01.jpg", title: "Opal Point Skull", note: "one of a kind" },
+      { file: "dnd-owl-pair-blue-beads-01.jpg", title: "Owl Pair Blue Beads", note: "one of a kind" },
+      { file: "dnd-pokemon-bulbasaur-dome-01.jpg", title: "Pokemon Bulbasaur Dome", note: "one of a kind" },
+      { file: "dnd-pokemon-cabochon-set-01.jpg", title: "Pokemon Cabochon Set", note: "one of a kind" },
+      { file: "dnd-potion-bottle-amber-01.jpg", title: "Potion Bottle Amber", note: "one of a kind" },
+      { file: "dnd-potion-bottle-pink-01.jpg", title: "Potion Bottle Pink", note: "one of a kind" },
+      { file: "dnd-raw-crystal-double-01.jpg", title: "Raw Crystal Double", note: "one of a kind" },
+      { file: "dnd-rose-quartz-point-01.jpg", title: "Rose Quartz Point", note: "one of a kind" },
+      { file: "dnd-shadowbox-miniature-scene-01.jpg", title: "Shadowbox Miniature Scene", note: "one of a kind" },
+      { file: "dnd-shadowbox-winged-figure-01.jpg", title: "Shadowbox Winged Figure", note: "one of a kind" },
+      { file: "dnd-shell-fan-iridescent-01.jpg", title: "Shell Fan Iridescent", note: "one of a kind" },
+      { file: "dnd-silver-charm-small-01.jpg", title: "Silver Charm Small", note: "one of a kind" },
+      { file: "dnd-silver-turquoise-drop-01.jpg", title: "Silver Turquoise Drop", note: "one of a kind" },
+      { file: "dnd-stone-heart-feather-01.jpg", title: "Stone Heart Feather", note: "one of a kind" },
+      { file: "dnd-tree-of-life-01.jpg", title: "Tree Of Life", note: "one of a kind" },
+      { file: "dnd-triquetra-brass-01.jpg", title: "Triquetra Brass", note: "one of a kind" },
+      { file: "dnd-triquetra-stone-01.jpg", title: "Triquetra Stone", note: "one of a kind" },
+      { file: "dnd-triquetra-twisted-chain-01.jpg", title: "Triquetra Twisted Chain", note: "one of a kind" },
+      { file: "dnd-turquoise-bead-plaque-01.jpg", title: "Turquoise Bead Plaque", note: "one of a kind" },
+      { file: "dnd-unicorn-charm-amber-01.jpg", title: "Unicorn Charm Amber", note: "one of a kind" },
+      { file: "dnd-winged-dice-crystal-01.jpg", title: "Winged Dice Crystal", note: "one of a kind" },
 
-      { file: "collection-dragons-01.jpg",         title: "Wyrm",          note: "dragon pendant" },
-      { file: "collection-dragons-02.jpg",         title: "Drake",         note: "dragon pendant" },
-      { file: "collection-earrings-01.jpg",        title: "Faire Earrings",    note: "handmade pair — name from the photo" },
-      { file: "collection-earrings-02.jpg",        title: "Faire Earrings II", note: "handmade pair — name from the photo" },
-      { file: "collection-fantasy-celtic-01.jpg",  title: "Celtic Knot",   note: "knotwork, fantasy series" },
-      { file: "collection-pendants-cameo-01.jpg",  title: "The Cameo",     note: "carved cameo pendant" },
-      { file: "collection-pendants-dnd-crystal-01.jpg", title: "Crystal Focus", note: "D&D crystal pendant" },
-      { file: "collection-pendants-halloween-01.jpg",   title: "Hallow's Eve",  note: "halloween pendant" },
-      { file: "collection-pendants-mythos-01.jpg", title: "Mythos I",      note: "mythos series pendant" },
-      { file: "collection-pendants-mythos-02.jpg", title: "Mythos II",     note: "mythos series pendant" },
-      { file: "collection-pendants-mythos-03.jpg", title: "Mythos III",    note: "mythos series pendant" },
-      { file: "collection-pendants-mythos-04.jpg", title: "Mythos IV",     note: "mythos series pendant" },
-      { file: "collection-pendants-steampunk-01.jpg", title: "Clockwork",  note: "steampunk pendant, gears" },
-      { file: "collection-pendants-steampunk-02.jpg", title: "Cogsmith",   note: "steampunk pendant, gears" },
-      { file: "collection-pendants-tarot-01.jpg",  title: "Arcana",        note: "tarot pendant" },
-      { file: "collection-pendants-tarot-02.jpg",  title: "Arcana II",     note: "tarot pendant" },
-      { file: "collection-pokemon-01.jpg",         title: "Pocket Monster", note: "fan-art charm" },
-      { file: "collection-rings-dnd-01.jpg",       title: "Adventurer's Ring",    note: "D&D ring" },
-      { file: "collection-rings-dnd-02.jpg",       title: "Adventurer's Ring II", note: "D&D ring" },
-      { file: "collection-rings-filigree-01.jpg",  title: "Filigree Band", note: "filigree ring" },
-      { file: "necklace-amazonite-arrow-01.jpg",   title: "Amazonite Arrow", note: "arrowhead necklace, blue-green stone" },
-      { file: "necklace-cat-mouse-01.jpg",         title: "Cat & Mouse",   note: "playful paired necklace" },
-      { file: "necklace-orbital-01.jpg",           title: "Orbital",       note: "orbit-form necklace" },
-      { file: "necklace-scrollwork-01.jpg",        title: "Scrollwork",    note: "scrolled-metal necklace" },
-      { file: "pendant-blue-flower-01.jpg",        title: "Blue Blossom",  note: "enamel flower pendant" },
-      { file: "pendant-dragon-green-01.jpg",       title: "Verdant Drake", note: "green dragon pendant" },
-      { file: "ring-bee-filigree-01.jpg",          title: "The Bee",       note: "filigree bee ring" },
-      { file: "ring-filigree-floral-01.jpg",       title: "Floral Filigree", note: "floral filigree ring" },
-      { file: "set-blue-floral-01.jpg",            title: "Blue Floral Set", note: "matched set" },
-      { file: "set-cloisonne-bead-01.jpg",         title: "Cloisonné Beads", note: "cloisonné bead set" },
-      { file: "set-cloisonne-heart-01.jpg",        title: "Cloisonné Heart", note: "cloisonné heart set" },
-      { file: "set-pentagram-01.jpg",              title: "Pentagram",     note: "pentagram matched set" },
+      // ── dragons ──
+      { file: "dragons-dragon-skeleton-dome-01.jpg", title: "Dragon Skeleton Dome", note: "one of a kind" },
+      { file: "dragons-enamel-blue-green-dragon-01.jpg", title: "Enamel Blue Green Dragon", note: "one of a kind" },
+      { file: "dragons-gold-framed-dragon-01.jpg", title: "Gold Framed Dragon", note: "one of a kind" },
+      { file: "dragons-green-gold-enamel-dragon-01.jpg", title: "Green Gold Enamel Dragon", note: "one of a kind" },
+      { file: "dragons-purple-enamel-dragon-01.jpg", title: "Purple Enamel Dragon", note: "one of a kind" },
+      { file: "dragons-red-gold-enamel-dragon-01.jpg", title: "Red Gold Enamel Dragon", note: "one of a kind" },
+      { file: "dragons-silver-rhinestone-dragon-01.jpg", title: "Silver Rhinestone Dragon", note: "one of a kind" },
+      { file: "dragons-silver-square-dragon-01.jpg", title: "Silver Square Dragon", note: "one of a kind" },
 
-      // ── Relocated per Code's note: booth/display scene-shots ──
-      // Atmosphere & multi-piece shots, not single specimens, so they fight the
-      // vitrine frame (its spotlight assumes one centered object). They're ideal
-      // for the homepage hero, which already dims images behind the overlay.
-      // Parked here so nothing's lost — say the word and I'll wire them in:
-      //   collection-booth-display-01.jpg
-      //   collection-dragons-display-01.jpg
-      //   collection-dragons-display-02.jpg
-      //   collection-mixed-display-01.jpg
+      // ── steampunk ──
+      { file: "steampunk-bee-glass-orb-01.jpg", title: "Bee Glass Orb", note: "one of a kind" },
+      { file: "steampunk-bee-orb-brass-01.jpg", title: "Bee Orb Brass", note: "one of a kind" },
+      { file: "steampunk-brass-diamond-small-01.jpg", title: "Brass Diamond Small", note: "one of a kind" },
+      { file: "steampunk-clock-gears-collage-01.jpg", title: "Clock Gears Collage", note: "one of a kind" },
+      { file: "steampunk-clockface-rose-red-bezel-01.jpg", title: "Clockface Rose Red Bezel", note: "one of a kind" },
+      { file: "steampunk-clockface-rose-round-01.jpg", title: "Clockface Rose Round", note: "one of a kind" },
+      { file: "steampunk-copper-washer-keys-01.jpg", title: "Copper Washer Keys", note: "one of a kind" },
+      { file: "steampunk-framed-gears-cat-01.jpg", title: "Framed Gears Cat", note: "one of a kind" },
+      { file: "steampunk-gear-brooch-pearls-01.jpg", title: "Gear Brooch Pearls", note: "one of a kind" },
+      { file: "steampunk-key-gears-pearls-01.jpg", title: "Key Gears Pearls", note: "one of a kind" },
+      { file: "steampunk-keys-purple-beads-01.jpg", title: "Keys Purple Beads", note: "one of a kind" },
+      { file: "steampunk-pocketwatch-lace-copper-01.jpg", title: "Pocketwatch Lace Copper", note: "one of a kind" },
+      { file: "steampunk-pocketwatch-lace-pearls-01.jpg", title: "Pocketwatch Lace Pearls", note: "one of a kind" },
+      { file: "steampunk-sun-moon-face-feather-01.jpg", title: "Sun Moon Face Feather", note: "one of a kind" },
+
+      // ── renfaire ──
+      { file: "renfaire-bee-cabochon-round-01.jpg", title: "Bee Cabochon Round", note: "one of a kind" },
+      { file: "renfaire-bee-wings-blue-flower-01.jpg", title: "Bee Wings Blue Flower", note: "one of a kind" },
+      { file: "renfaire-blue-floral-cluster-01.jpg", title: "Blue Floral Cluster", note: "one of a kind" },
+      { file: "renfaire-blue-glass-bead-chain-01.jpg", title: "Blue Glass Bead Chain", note: "one of a kind" },
+      { file: "renfaire-celtic-mandala-gold-01.jpg", title: "Celtic Mandala Gold", note: "one of a kind" },
+      { file: "renfaire-copper-red-stone-round-01.jpg", title: "Copper Red Stone Round", note: "one of a kind" },
+      { file: "renfaire-copper-wrap-blue-stone-01.jpg", title: "Copper Wrap Blue Stone", note: "one of a kind" },
+      { file: "renfaire-diorama-cottage-tavern-01.jpg", title: "Diorama Cottage Tavern", note: "one of a kind" },
+      { file: "renfaire-diorama-cottage-tavern-02.jpg", title: "Diorama Cottage Tavern", note: "one of a kind" },
+      { file: "renfaire-four-leaf-clover-resin-01.jpg", title: "Four Leaf Clover Resin", note: "one of a kind" },
+      { file: "renfaire-framed-red-rose-branches-01.jpg", title: "Framed Red Rose Branches", note: "one of a kind" },
+      { file: "renfaire-gnomes-felt-pair-01.jpg", title: "Gnomes Felt Pair", note: "one of a kind" },
+      { file: "renfaire-red-cord-blue-flower-01.jpg", title: "Red Cord Blue Flower", note: "one of a kind" },
+      { file: "renfaire-succulent-cabochon-01.jpg", title: "Succulent Cabochon", note: "one of a kind" },
+      { file: "renfaire-turquoise-gold-medallion-01.jpg", title: "Turquoise Gold Medallion", note: "one of a kind" },
+      { file: "renfaire-window-frame-lights-flowers-01.jpg", title: "Window Frame Lights Flowers", note: "one of a kind" },
+      { file: "renfaire-wreath-coral-flowers-01.jpg", title: "Wreath Coral Flowers", note: "one of a kind" },
+      { file: "renfaire-wreath-wood-flowers-01.jpg", title: "Wreath Wood Flowers", note: "one of a kind" },
+      { file: "renfaire-wreath-yellow-roses-01.jpg", title: "Wreath Yellow Roses", note: "one of a kind" },
+      { file: "renfaire-wreath-yellow-roses-02.jpg", title: "Wreath Yellow Roses", note: "one of a kind" },
+
+      // ── victorian ──
+      { file: "victorian-assemblage-key-cameo-tag-01.jpg", title: "Assemblage Key Cameo Tag", note: "one of a kind" },
+      { file: "victorian-brass-elongated-ornate-01.jpg", title: "Brass Elongated Ornate", note: "one of a kind" },
+      { file: "victorian-brass-floral-locket-01.jpg", title: "Brass Floral Locket", note: "one of a kind" },
+      { file: "victorian-brass-ornate-round-01.jpg", title: "Brass Ornate Round", note: "one of a kind" },
+      { file: "victorian-cabochon-child-vintage-01.jpg", title: "Cabochon Child Vintage", note: "one of a kind" },
+      { file: "victorian-cabochon-key-alice-01.jpg", title: "Cabochon Key Alice", note: "one of a kind" },
+      { file: "victorian-cabochon-vintage-figure-01.jpg", title: "Cabochon Vintage Figure", note: "one of a kind" },
+      { file: "victorian-cameo-coral-drop-01.jpg", title: "Cameo Coral Drop", note: "one of a kind" },
+      { file: "victorian-cameo-oval-gold-01.jpg", title: "Cameo Oval Gold", note: "one of a kind" },
+      { file: "victorian-cameo-oval-large-01.jpg", title: "Cameo Oval Large", note: "one of a kind" },
+      { file: "victorian-cameo-oval-silver-01.jpg", title: "Cameo Oval Silver", note: "one of a kind" },
+      { file: "victorian-cameo-oval-small-01.jpg", title: "Cameo Oval Small", note: "one of a kind" },
+      { file: "victorian-cat-cabochon-pink-01.jpg", title: "Cat Cabochon Pink", note: "one of a kind" },
+      { file: "victorian-copper-bow-knot-01.jpg", title: "Copper Bow Knot", note: "one of a kind" },
+      { file: "victorian-dark-bead-fleur-drop-01.jpg", title: "Dark Bead Fleur Drop", note: "one of a kind" },
+      { file: "victorian-dark-cord-gold-bead-01.jpg", title: "Dark Cord Gold Bead", note: "one of a kind" },
+      { file: "victorian-door-hanger-ribbons-key-01.jpg", title: "Door Hanger Ribbons Key", note: "one of a kind" },
+      { file: "victorian-drape-festoon-silver-01.jpg", title: "Drape Festoon Silver", note: "one of a kind" },
+      { file: "victorian-embossed-rectangle-01.jpg", title: "Embossed Rectangle", note: "one of a kind" },
+      { file: "victorian-filigree-pearl-drop-01.jpg", title: "Filigree Pearl Drop", note: "one of a kind" },
+      { file: "victorian-filigree-round-silver-01.jpg", title: "Filigree Round Silver", note: "one of a kind" },
+      { file: "victorian-floral-cabochon-round-01.jpg", title: "Floral Cabochon Round", note: "one of a kind" },
+      { file: "victorian-framed-relief-flowers-01.jpg", title: "Framed Relief Flowers", note: "one of a kind" },
+      { file: "victorian-gold-chain-beads-charms-01.jpg", title: "Gold Chain Beads Charms", note: "one of a kind" },
+      { file: "victorian-gold-oval-locket-01.jpg", title: "Gold Oval Locket", note: "one of a kind" },
+      { file: "victorian-multistrand-pearl-hand-01.jpg", title: "Multistrand Pearl Hand", note: "one of a kind" },
+      { file: "victorian-oval-crystal-halo-01.jpg", title: "Oval Crystal Halo", note: "one of a kind" },
+      { file: "victorian-pearl-strand-gold-plate-01.jpg", title: "Pearl Strand Gold Plate", note: "one of a kind" },
+      { file: "victorian-pink-floral-nugget-01.jpg", title: "Pink Floral Nugget", note: "one of a kind" },
+      { file: "victorian-pink-rose-cameo-01.jpg", title: "Pink Rose Cameo", note: "one of a kind" },
+      { file: "victorian-print-cat-gentleman-01.jpg", title: "Print Cat Gentleman", note: "one of a kind" },
+      { file: "victorian-puffed-heart-01.jpg", title: "Puffed Heart", note: "one of a kind" },
+      { file: "victorian-rose-pearl-drop-01.jpg", title: "Rose Pearl Drop", note: "one of a kind" },
+      { file: "victorian-square-cabochon-art-01.jpg", title: "Square Cabochon Art", note: "one of a kind" },
+      { file: "victorian-square-cabochon-colorful-01.jpg", title: "Square Cabochon Colorful", note: "one of a kind" },
+      { file: "victorian-square-silver-small-01.jpg", title: "Square Silver Small", note: "one of a kind" },
+      { file: "victorian-teal-bead-tassel-drop-01.jpg", title: "Teal Bead Tassel Drop", note: "one of a kind" },
+      { file: "victorian-teardrop-coral-filigree-01.jpg", title: "Teardrop Coral Filigree", note: "one of a kind" },
+
+      // ── mystery ──
+      { file: "mystery-airplane-red-brooch-01.jpg", title: "Airplane Red Brooch", note: "one of a kind" },
+      { file: "mystery-bat-skeleton-mount-01.jpg", title: "Bat Skeleton Mount", note: "one of a kind" },
+      { file: "mystery-cameo-face-black-01.jpg", title: "Cameo Face Black", note: "one of a kind" },
+      { file: "mystery-crystal-ball-eye-01.jpg", title: "Crystal Ball Eye", note: "one of a kind" },
+      { file: "mystery-crystal-cluster-stand-01.jpg", title: "Crystal Cluster Stand", note: "one of a kind" },
+      { file: "mystery-deaths-head-moth-01.jpg", title: "Deaths Head Moth", note: "one of a kind" },
+      { file: "mystery-dragonfly-lucite-01.jpg", title: "Dragonfly Lucite", note: "one of a kind" },
+      { file: "mystery-framed-beetle-green-01.jpg", title: "Framed Beetle Green", note: "one of a kind" },
+      { file: "mystery-framed-beetle-red-01.jpg", title: "Framed Beetle Red", note: "one of a kind" },
+      { file: "mystery-framed-cat-roses-01.jpg", title: "Framed Cat Roses", note: "one of a kind" },
+      { file: "mystery-framed-cat-star-01.jpg", title: "Framed Cat Star", note: "one of a kind" },
+      { file: "mystery-framed-dragonfly-bow-01.jpg", title: "Framed Dragonfly Bow", note: "one of a kind" },
+      { file: "mystery-framed-floral-cabochon-01.jpg", title: "Framed Floral Cabochon", note: "one of a kind" },
+      { file: "mystery-framed-owl-hearts-01.jpg", title: "Framed Owl Hearts", note: "one of a kind" },
+      { file: "mystery-framed-owl-teal-01.jpg", title: "Framed Owl Teal", note: "one of a kind" },
+      { file: "mystery-framed-owls-trio-01.jpg", title: "Framed Owls Trio", note: "one of a kind" },
+      { file: "mystery-framed-pearl-cat-assemblage-01.jpg", title: "Framed Pearl Cat Assemblage", note: "one of a kind" },
+      { file: "mystery-framed-ribcage-flowers-01.jpg", title: "Framed Ribcage Flowers", note: "one of a kind" },
+      { file: "mystery-framed-rose-sculpture-01.jpg", title: "Framed Rose Sculpture", note: "one of a kind" },
+      { file: "mystery-framed-spider-gold-01.jpg", title: "Framed Spider Gold", note: "one of a kind" },
+      { file: "mystery-framed-spiders-pair-01.jpg", title: "Framed Spiders Pair", note: "one of a kind" },
+      { file: "mystery-glass-domes-pair-01.jpg", title: "Glass Domes Pair", note: "one of a kind" },
+      { file: "mystery-hand-palm-silver-01.jpg", title: "Hand Palm Silver", note: "one of a kind" },
+      { file: "mystery-holographic-cabochon-black-01.jpg", title: "Holographic Cabochon Black", note: "one of a kind" },
+      { file: "mystery-pewter-figure-plaque-01.jpg", title: "Pewter Figure Plaque", note: "one of a kind" },
+      { file: "mystery-pewter-figure-square-01.jpg", title: "Pewter Figure Square", note: "one of a kind" },
+      { file: "mystery-ribcage-flowers-01.jpg", title: "Ribcage Flowers", note: "one of a kind" },
+      { file: "mystery-specimen-jar-amber-01.jpg", title: "Specimen Jar Amber", note: "one of a kind" },
+      { file: "mystery-tarot-card-pendant-01.jpg", title: "Tarot Card Pendant", note: "one of a kind" },
+
+      // ── terrariums ──
+      { file: "terrariums-bottle-shells-sand-01.jpg", title: "Bottle Shells Sand", note: "one of a kind" },
+      { file: "terrariums-bottle-stones-coral-01.jpg", title: "Bottle Stones Coral", note: "one of a kind" },
+      { file: "terrariums-jar-moss-figure-01.jpg", title: "Jar Moss Figure", note: "one of a kind" },
+      { file: "terrariums-jar-squirtle-01.jpg", title: "Jar Squirtle", note: "one of a kind" },
+      { file: "terrariums-jars-pokemon-pair-01.jpg", title: "Jars Pokemon Pair", note: "one of a kind" },
+      { file: "terrariums-pokemon-diorama-round-01.jpg", title: "Pokemon Diorama Round", note: "one of a kind" },
+      { file: "terrariums-shadowbox-moss-moon-01.jpg", title: "Shadowbox Moss Moon", note: "one of a kind" },
+      { file: "terrariums-star-frame-succulents-01.jpg", title: "Star Frame Succulents", note: "one of a kind" },
     ];
 
     /* ── Nothing below here needs editing ── */
 
     function categorize(f) {
+      // New files lead with their case: dnd-die-purple-butterfly-01.jpg
+      var m = f.replace(/^.*\//, "").match(/^(dnd|dragons|steampunk|renfaire|victorian|mystery|terrariums)-/);
+      if (m) return m[1];
+      // Legacy filenames fall through to pattern-matching
       if (/dragon/.test(f)) return "dragons";
       if (/steampunk/.test(f)) return "steampunk";
       if (/tarot|halloween|pentagram/.test(f)) return "mystery";
@@ -500,6 +635,7 @@
       o.title = o.title || prettify(f);
       o.note  = o.note  || "one of a kind";
       o.cat   = o.cat   || categorize(o.file || "");
+      o.thumb = o.thumb || (f.includes("/") ? f : "images/thumb/" + f.replace(/\.[a-z0-9]+$/i, ".jpg"));
       return o;
     }
 
@@ -521,7 +657,7 @@
         if (it.fit) frame.style.setProperty("--fit", it.fit);
 
         const img = document.createElement("img");
-        img.src = it.src;
+        img.src = it.thumb;
         img.alt = it.title;
         img.loading = "lazy";
         img.onerror = function () {
@@ -558,7 +694,7 @@
       history.replaceState(null, "", c.dataset.cat === "all" ? location.pathname : "#" + c.dataset.cat);
     }));
     const initialCat = (location.hash || "").slice(1);
-    applyFilter(["dnd","dragons","steampunk","renfaire","victorian","mystery"].includes(initialCat) ? initialCat : "all");
+    applyFilter(["dnd","dragons","steampunk","renfaire","victorian","mystery","terrariums"].includes(initialCat) ? initialCat : "all");
 
     const lb      = document.getElementById("lightbox");
     const lbImg   = document.getElementById("lbImg");

@@ -186,7 +186,7 @@
     }
     .collection-item {
       background: #151a14;
-      padding: 2rem 1rem;
+      padding: 2.25rem 1.25rem;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -195,16 +195,38 @@
       text-decoration: none;
     }
     .collection-item:hover { background: #1c231a; }
-    .collection-icon { font-size: 20px; line-height: 1; color: #a07840; }
+    .collection-icon { font-size: 20px; line-height: 1; color: #a07840; margin-bottom: 0.35rem; }
+    .collection-article {
+      font-family: 'Cinzel', serif;
+      font-size: 8px;
+      letter-spacing: 0.34em;
+      text-transform: uppercase;
+      color: #525a48;
+      margin-bottom: -0.5rem;
+      margin-right: -0.34em;          /* absorb the trailing letter-space so it stays optically centred */
+      transition: color 0.2s ease;
+    }
     .collection-name {
       font-family: 'Cinzel', serif;
-      font-size: 10px;
-      letter-spacing: 0.18em;
+      font-size: 12px;
+      letter-spacing: 0.2em;
       text-transform: uppercase;
       color: #9a8660;
+      margin-right: -0.2em;
+      text-align: center;
+      transition: color 0.2s ease;
     }
-    .collection-note { font-family: 'EB Garamond', serif; font-style: italic; font-size: 13px; color: #525a48; }
-    a.collection-item:hover .collection-name { color: #c8a060; }
+    .collection-note {
+      font-family: 'EB Garamond', serif;
+      font-style: italic;
+      font-size: 13px;
+      color: #525a48;
+      text-align: center;
+      max-width: 21ch;
+      line-height: 1.45;
+    }
+    a.collection-item:hover .collection-name    { color: #c8a060; }
+    a.collection-item:hover .collection-article { color: #6d7860; }
 
     /* ── Book Section ── */
     .book-section { padding: 5rem 2rem; border-top: 1px solid #222a1e; max-width: 860px; margin: 0 auto; }
@@ -365,48 +387,57 @@
     <div class="collections-grid">
       <a class="collection-item" href="gallery.html#dnd">
         <span class="collection-icon">⚔︎</span>
-        <span class="collection-name">D&amp;D &amp; Fantasy</span>
-        <span class="collection-note">in the gallery</span>
+        <span class="collection-article">The</span>
+        <span class="collection-name">Fantasy Treasury</span>
+        <span class="collection-note">Spoils from a hundred campaigns</span>
       </a>
       <a class="collection-item" href="gallery.html#dragons">
         <span class="collection-icon">✶</span>
-        <span class="collection-name">Dragons</span>
-        <span class="collection-note">in the gallery</span>
+        <span class="collection-article">The</span>
+        <span class="collection-name">Dragon's Hoard</span>
+        <span class="collection-note">Scales, claws, and things worth guarding</span>
       </a>
       <a class="collection-item" href="gallery.html#steampunk">
         <span class="collection-icon">⚙︎</span>
-        <span class="collection-name">Steampunk</span>
-        <span class="collection-note">in the gallery</span>
+        <span class="collection-article">The</span>
+        <span class="collection-name">Steampunk Salon</span>
+        <span class="collection-note">Brass, gears, and improbable machinery</span>
       </a>
       <a class="collection-item" href="gallery.html#renfaire">
         <span class="collection-icon">❧</span>
-        <span class="collection-name">Ren Faire</span>
-        <span class="collection-note">in the gallery</span>
+        <span class="collection-article">The</span>
+        <span class="collection-name">Faire Grounds</span>
+        <span class="collection-note">Celtic knotwork and market-day finery</span>
       </a>
       <a class="collection-item" href="art.html">
         <span class="collection-icon">✧</span>
-        <span class="collection-name">Fine Art</span>
-        <span class="collection-note">enter the studio</span>
+        <span class="collection-article">The</span>
+        <span class="collection-name">Atelier</span>
+        <span class="collection-note">Original works, from the maker's bench</span>
       </a>
-      <div class="collection-item">
+      <a class="collection-item" href="gallery.html#terrariums">
         <span class="collection-icon">✿</span>
-        <span class="collection-name">Terrariums</span>
-        <span class="collection-note">coming soon</span>
-      </div>
+        <span class="collection-article">The</span>
+        <span class="collection-name">Conservatory</span>
+        <span class="collection-note">Small worlds under glass</span>
+      </a>
       <a class="collection-item" href="gallery.html#victorian">
         <span class="collection-icon">❦</span>
-        <span class="collection-name">Victorian</span>
-        <span class="collection-note">in the gallery</span>
+        <span class="collection-article">The</span>
+        <span class="collection-name">Victorian Parlour</span>
+        <span class="collection-note">Lockets, jet, and quiet mischief</span>
       </a>
       <a class="collection-item" href="the-library.html">
         <span class="collection-icon">✒︎</span>
-        <span class="collection-name">The Library</span>
-        <span class="collection-note">available now</span>
+        <span class="collection-article">The</span>
+        <span class="collection-name">Library</span>
+        <span class="collection-note">Mysteries in print, from this desk</span>
       </a>
       <a class="collection-item" href="gallery.html#mystery">
         <span class="collection-icon">☽</span>
-        <span class="collection-name">Mystery</span>
-        <span class="collection-note">what lurks within…</span>
+        <span class="collection-article">The</span>
+        <span class="collection-name">Curio Cabinet</span>
+        <span class="collection-note">Oddments that fit no other case</span>
       </a>
     </div>
   </section>
