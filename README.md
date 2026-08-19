@@ -1,4 +1,4 @@
-# lorefaire.com Lore Faire — gallery images, 2026-08-18 shoot# 
+# Lore Faire — gallery images, 2026-08-18 shoot # 
 
 Built 2026-08-19 by Cole from the 191 photos in `photos-raw/Jewelry Art/`.
 Originals untouched, and still in Google Drive (My Drive → Crafts → Jewelry Art).
