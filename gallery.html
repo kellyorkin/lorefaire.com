@@ -14,6 +14,7 @@
        gallery reads as the same site.
        ─────────────────────────────────────────────────────────── */
     :root {
+      --r: 4px;
       --bg:        #151a14;
       --bg-dark:   #0f140f;
       --panel:     #1c231a;
@@ -142,6 +143,7 @@
       font-family: 'Cinzel', serif; font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase;
       color: var(--parch-dim); background: none; border: 1px solid var(--line); padding: 8px 16px; white-space: nowrap;
       cursor: pointer; transition: color 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+      border-radius: var(--r);
     }
     .chip:hover { color: var(--cream); border-color: var(--gold); }
     .chip.active { color: var(--gold-lit); border-color: var(--gold); background: rgba(160,120,64,0.08); }
@@ -179,6 +181,7 @@
       background: radial-gradient(ellipse 72% 62% at 50% 40%, #26301f 0%, #111610 74%);
       overflow: hidden;
       transition: border-color 0.25s ease, transform 0.3s ease;
+      border-radius: var(--r);
     }
     .frame img {
       width: 100%;
@@ -236,6 +239,7 @@
       align-items: center;
       justify-content: center;
       gap: 14px;
+      border-radius: var(--r);
     }
     .ph .gem { width: 12px; height: 12px; background: var(--gold); transform: rotate(45deg); opacity: 0.5; }
     .ph span {
@@ -277,6 +281,7 @@
       max-height: 74vh;
       object-fit: contain;
       filter: drop-shadow(0 22px 55px rgba(0,0,0,0.75));
+      border-radius: var(--r);
     }
     .lb-cap { text-align: center; max-width: 600px; }
     .lb-cap .t {

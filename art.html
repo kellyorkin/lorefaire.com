@@ -9,6 +9,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=EB+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet" />
   <style>
+    :root { --r: 4px; }
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
 
@@ -149,6 +150,8 @@
       overflow: hidden;
       cursor: pointer;
       background: #0f140f;
+
+      border-radius: var(--r);
     }
 
     .masonry-item img {
@@ -222,6 +225,7 @@
       max-width: 100%;
       object-fit: contain;
       border: 1px solid #2f3a28;
+      border-radius: var(--r);
     }
 
     .lightbox-close {
